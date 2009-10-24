@@ -7,4 +7,4 @@ Requirements
 ============
 
 * iPhone OS 3.0 or greater
-* A Mac running at least Mac OS X 10.4 or later and [TuneConnect]http://www.tuneconnect.net/
+* A Mac running at least Mac OS X 10.4 or later and [TuneConnect](http://www.tuneconnect.net/)
