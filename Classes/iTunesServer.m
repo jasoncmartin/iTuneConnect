@@ -230,6 +230,7 @@
 	if(![[params valueForKey:@"volume"] boolValue])
 		[server sendFourHundred:AS_JSON];
 	
+	// TuneConnect gives us a number between 0 and 100, but iPhone needs between 0.0 and 1.0.
 	[[MPMusicPlayerController iPodMusicPlayer] setVolume:[[params valueForKey:@"volume"] floatValue] / 100];
 	
 	[server sendSuccess:AS_JSON];
@@ -260,6 +261,8 @@
 #pragma mark -
 #pragma mark Private Methods
 
+// TODO: Finish implementation of this.
+
 - (NSArray *)composeTrackArray:(NSDictionary *)params {
 	NSArray *parts = [[params valueForKey:@"ofPlaylist"] componentsSeparatedByString:@":"];
 	
@@ -268,7 +271,7 @@
 	NSString *playlistID = [parts objectAtIndex:0];
 	NSString *sourceID = [parts objectAtIndex:1];
 	
-	NSArray *allTracks = [];
+	//NSArray *allTracks = [];
 	
 	return nil;
 }
