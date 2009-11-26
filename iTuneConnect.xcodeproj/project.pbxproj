@@ -1,0 +1,377 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1D60589B0D05DD56006BFB54 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 29B97316FDCFA39411CA2CEA /* main.m */; };
+		1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D30AB110D05D00D00671497 /* Foundation.framework */; };
+		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
+		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
+		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
+		C313006C109C7E13003097C6 /* NSDictionary+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C313006B109C7E13003097C6 /* NSDictionary+Additions.m */; };
+		C33A76A110B47E8400BFC8BF /* MPMediaItem-Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = C33A76A010B47E8400BFC8BF /* MPMediaItem-Properties.m */; };
+		C34020A4108BA7F400088BEC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C34020A3108BA7F400088BEC /* CFNetwork.framework */; };
+		C34020C0108BA80900088BEC /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = C34020A8108BA80900088BEC /* SBJsonWriter.m */; };
+		C34020C1108BA80900088BEC /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C34020AA108BA80900088BEC /* SBJsonParser.m */; };
+		C34020C2108BA80900088BEC /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C34020AC108BA80900088BEC /* SBJsonBase.m */; };
+		C34020C3108BA80900088BEC /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C34020AE108BA80900088BEC /* SBJSON.m */; };
+		C34020C4108BA80900088BEC /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C34020B0108BA80900088BEC /* NSString+SBJSON.m */; };
+		C34020C5108BA80900088BEC /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C34020B2108BA80900088BEC /* NSObject+SBJSON.m */; };
+		C34020C6108BA80900088BEC /* SimpleHTTPConnection.m in Sources */ = {isa = PBXBuildFile; fileRef = C34020B7108BA80900088BEC /* SimpleHTTPConnection.m */; };
+		C34020C7108BA80900088BEC /* SimpleHTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C34020B9108BA80900088BEC /* SimpleHTTPServer.m */; };
+		C34020C8108BA80900088BEC /* iTuneConnectAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C34020BB108BA80900088BEC /* iTuneConnectAppDelegate.m */; };
+		C34020C9108BA80900088BEC /* TuneConnectServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C34020BD108BA80900088BEC /* TuneConnectServer.m */; };
+		C34020CA108BA80900088BEC /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = C34020BF108BA80900088BEC /* Common.m */; };
+		C3402158108BB69200088BEC /* iTunesServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C3402157108BB69200088BEC /* iTunesServer.m */; };
+		C340215D108BB91F00088BEC /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C340215C108BB91F00088BEC /* MediaPlayer.framework */; };
+		C36A540E10AE57EF00952CD7 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36A540D10AE57EF00952CD7 /* SettingsViewController.m */; };
+		C3726F081092038700EE47B9 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3726F061092038700EE47B9 /* SettingsViewController.xib */; };
+		C3B212BB108BBC6800B8198C /* NSObject+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B212BA108BBC6800B8198C /* NSObject+Additions.m */; };
+		C3BC75301097D54A00141627 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC752F1097D54A00141627 /* NSString+Additions.m */; };
+		C3ECC29F108E7B8700B3D23A /* no-art.png in Resources */ = {isa = PBXBuildFile; fileRef = C3ECC29E108E7B8700B3D23A /* no-art.png */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1D30AB110D05D00D00671497 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		1D6058910D05DD3D006BFB54 /* iTuneConnect.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTuneConnect.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		288765FC0DF74451002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		28AD733E0D9D9553002E5188 /* MainWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainWindow.xib; sourceTree = "<group>"; };
+		29B97316FDCFA39411CA2CEA /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		32CA4F630368D1EE00C91783 /* iTuneConnect_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTuneConnect_Prefix.pch; sourceTree = "<group>"; };
+		8D1107310486CEB800E47090 /* iTuneConnect-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iTuneConnect-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
+		C313006A109C7E13003097C6 /* NSDictionary+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Additions.h"; sourceTree = "<group>"; };
+		C313006B109C7E13003097C6 /* NSDictionary+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Additions.m"; sourceTree = "<group>"; };
+		C33A769F10B47E8400BFC8BF /* MPMediaItem-Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPMediaItem-Properties.h"; sourceTree = "<group>"; };
+		C33A76A010B47E8400BFC8BF /* MPMediaItem-Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPMediaItem-Properties.m"; sourceTree = "<group>"; };
+		C34020A3108BA7F400088BEC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		C34020A8108BA80900088BEC /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		C34020A9108BA80900088BEC /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		C34020AA108BA80900088BEC /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		C34020AB108BA80900088BEC /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		C34020AC108BA80900088BEC /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		C34020AD108BA80900088BEC /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		C34020AE108BA80900088BEC /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
+		C34020AF108BA80900088BEC /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
+		C34020B0108BA80900088BEC /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		C34020B1108BA80900088BEC /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		C34020B2108BA80900088BEC /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		C34020B3108BA80900088BEC /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		C34020B4108BA80900088BEC /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		C34020B6108BA80900088BEC /* SimpleHTTPConnection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleHTTPConnection.h; sourceTree = "<group>"; };
+		C34020B7108BA80900088BEC /* SimpleHTTPConnection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleHTTPConnection.m; sourceTree = "<group>"; };
+		C34020B8108BA80900088BEC /* SimpleHTTPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SimpleHTTPServer.h; sourceTree = "<group>"; };
+		C34020B9108BA80900088BEC /* SimpleHTTPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SimpleHTTPServer.m; sourceTree = "<group>"; };
+		C34020BA108BA80900088BEC /* iTuneConnectAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTuneConnectAppDelegate.h; sourceTree = "<group>"; };
+		C34020BB108BA80900088BEC /* iTuneConnectAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTuneConnectAppDelegate.m; sourceTree = "<group>"; };
+		C34020BC108BA80900088BEC /* TuneConnectServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TuneConnectServer.h; sourceTree = "<group>"; };
+		C34020BD108BA80900088BEC /* TuneConnectServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TuneConnectServer.m; sourceTree = "<group>"; };
+		C34020BE108BA80900088BEC /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		C34020BF108BA80900088BEC /* Common.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Common.m; sourceTree = "<group>"; };
+		C3402156108BB69200088BEC /* iTunesServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunesServer.h; sourceTree = "<group>"; };
+		C3402157108BB69200088BEC /* iTunesServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesServer.m; sourceTree = "<group>"; };
+		C340215C108BB91F00088BEC /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		C36A540C10AE57EF00952CD7 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		C36A540D10AE57EF00952CD7 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		C3726F061092038700EE47B9 /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		C3B212B9108BBC6800B8198C /* NSObject+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Additions.h"; sourceTree = "<group>"; };
+		C3B212BA108BBC6800B8198C /* NSObject+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Additions.m"; sourceTree = "<group>"; };
+		C3BC752E1097D54A00141627 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
+		C3BC752F1097D54A00141627 /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
+		C3ECC29E108E7B8700B3D23A /* no-art.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no-art.png"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1D60588F0D05DD3D006BFB54 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
+				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
+				288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */,
+				C34020A4108BA7F400088BEC /* CFNetwork.framework in Frameworks */,
+				C340215D108BB91F00088BEC /* MediaPlayer.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		080E96DDFE201D6D7F000001 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				C3B212B7108BBC5C00B8198C /* Additions */,
+				C34020B5108BA80900088BEC /* HTTP Server */,
+				C34020A7108BA80900088BEC /* JSON */,
+				C34020BE108BA80900088BEC /* Common.h */,
+				C34020BF108BA80900088BEC /* Common.m */,
+				C34020BA108BA80900088BEC /* iTuneConnectAppDelegate.h */,
+				C34020BB108BA80900088BEC /* iTuneConnectAppDelegate.m */,
+				C34020BC108BA80900088BEC /* TuneConnectServer.h */,
+				C34020BD108BA80900088BEC /* TuneConnectServer.m */,
+				C3402156108BB69200088BEC /* iTunesServer.h */,
+				C3402157108BB69200088BEC /* iTunesServer.m */,
+				C36A540C10AE57EF00952CD7 /* SettingsViewController.h */,
+				C36A540D10AE57EF00952CD7 /* SettingsViewController.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		19C28FACFE9D520D11CA2CBB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1D6058910D05DD3D006BFB54 /* iTuneConnect.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
+			isa = PBXGroup;
+			children = (
+				080E96DDFE201D6D7F000001 /* Classes */,
+				29B97315FDCFA39411CA2CEA /* Other Sources */,
+				29B97317FDCFA39411CA2CEA /* Resources */,
+				29B97323FDCFA39411CA2CEA /* Frameworks */,
+				19C28FACFE9D520D11CA2CBB /* Products */,
+			);
+			name = CustomTemplate;
+			sourceTree = "<group>";
+		};
+		29B97315FDCFA39411CA2CEA /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32CA4F630368D1EE00C91783 /* iTuneConnect_Prefix.pch */,
+				29B97316FDCFA39411CA2CEA /* main.m */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+		29B97317FDCFA39411CA2CEA /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C3ECC29E108E7B8700B3D23A /* no-art.png */,
+				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
+				8D1107310486CEB800E47090 /* iTuneConnect-Info.plist */,
+				C3726F061092038700EE47B9 /* SettingsViewController.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
+				1D30AB110D05D00D00671497 /* Foundation.framework */,
+				288765FC0DF74451002DB57D /* CoreGraphics.framework */,
+				C34020A3108BA7F400088BEC /* CFNetwork.framework */,
+				C340215C108BB91F00088BEC /* MediaPlayer.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C34020A7108BA80900088BEC /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				C34020A8108BA80900088BEC /* SBJsonWriter.m */,
+				C34020A9108BA80900088BEC /* SBJsonWriter.h */,
+				C34020AA108BA80900088BEC /* SBJsonParser.m */,
+				C34020AB108BA80900088BEC /* SBJsonParser.h */,
+				C34020AC108BA80900088BEC /* SBJsonBase.m */,
+				C34020AD108BA80900088BEC /* SBJsonBase.h */,
+				C34020AE108BA80900088BEC /* SBJSON.m */,
+				C34020AF108BA80900088BEC /* SBJSON.h */,
+				C34020B0108BA80900088BEC /* NSString+SBJSON.m */,
+				C34020B1108BA80900088BEC /* NSString+SBJSON.h */,
+				C34020B2108BA80900088BEC /* NSObject+SBJSON.m */,
+				C34020B3108BA80900088BEC /* NSObject+SBJSON.h */,
+				C34020B4108BA80900088BEC /* JSON.h */,
+			);
+			name = JSON;
+			sourceTree = "<group>";
+		};
+		C34020B5108BA80900088BEC /* HTTP Server */ = {
+			isa = PBXGroup;
+			children = (
+				C34020B6108BA80900088BEC /* SimpleHTTPConnection.h */,
+				C34020B7108BA80900088BEC /* SimpleHTTPConnection.m */,
+				C34020B8108BA80900088BEC /* SimpleHTTPServer.h */,
+				C34020B9108BA80900088BEC /* SimpleHTTPServer.m */,
+			);
+			name = "HTTP Server";
+			sourceTree = "<group>";
+		};
+		C3B212B7108BBC5C00B8198C /* Additions */ = {
+			isa = PBXGroup;
+			children = (
+				C3B212B9108BBC6800B8198C /* NSObject+Additions.h */,
+				C3B212BA108BBC6800B8198C /* NSObject+Additions.m */,
+				C3BC752E1097D54A00141627 /* NSString+Additions.h */,
+				C3BC752F1097D54A00141627 /* NSString+Additions.m */,
+				C313006A109C7E13003097C6 /* NSDictionary+Additions.h */,
+				C313006B109C7E13003097C6 /* NSDictionary+Additions.m */,
+				C33A769F10B47E8400BFC8BF /* MPMediaItem-Properties.h */,
+				C33A76A010B47E8400BFC8BF /* MPMediaItem-Properties.m */,
+			);
+			name = Additions;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1D6058900D05DD3D006BFB54 /* iTuneConnect */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "iTuneConnect" */;
+			buildPhases = (
+				1D60588D0D05DD3D006BFB54 /* Resources */,
+				1D60588E0D05DD3D006BFB54 /* Sources */,
+				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = iTuneConnect;
+			productName = iTuneConnect;
+			productReference = 1D6058910D05DD3D006BFB54 /* iTuneConnect.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		29B97313FDCFA39411CA2CEA /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "iTuneConnect" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1D6058900D05DD3D006BFB54 /* iTuneConnect */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1D60588D0D05DD3D006BFB54 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
+				C3ECC29F108E7B8700B3D23A /* no-art.png in Resources */,
+				C3726F081092038700EE47B9 /* SettingsViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1D60588E0D05DD3D006BFB54 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1D60589B0D05DD56006BFB54 /* main.m in Sources */,
+				C34020C0108BA80900088BEC /* SBJsonWriter.m in Sources */,
+				C34020C1108BA80900088BEC /* SBJsonParser.m in Sources */,
+				C34020C2108BA80900088BEC /* SBJsonBase.m in Sources */,
+				C34020C3108BA80900088BEC /* SBJSON.m in Sources */,
+				C34020C4108BA80900088BEC /* NSString+SBJSON.m in Sources */,
+				C34020C5108BA80900088BEC /* NSObject+SBJSON.m in Sources */,
+				C34020C6108BA80900088BEC /* SimpleHTTPConnection.m in Sources */,
+				C34020C7108BA80900088BEC /* SimpleHTTPServer.m in Sources */,
+				C34020C8108BA80900088BEC /* iTuneConnectAppDelegate.m in Sources */,
+				C34020C9108BA80900088BEC /* TuneConnectServer.m in Sources */,
+				C34020CA108BA80900088BEC /* Common.m in Sources */,
+				C3402158108BB69200088BEC /* iTunesServer.m in Sources */,
+				C3B212BB108BBC6800B8198C /* NSObject+Additions.m in Sources */,
+				C3BC75301097D54A00141627 /* NSString+Additions.m in Sources */,
+				C313006C109C7E13003097C6 /* NSDictionary+Additions.m in Sources */,
+				C36A540E10AE57EF00952CD7 /* SettingsViewController.m in Sources */,
+				C33A76A110B47E8400BFC8BF /* MPMediaItem-Properties.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1D6058940D05DD3E006BFB54 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = iTuneConnect_Prefix.pch;
+				INFOPLIST_FILE = "iTuneConnect-Info.plist";
+				PRODUCT_NAME = iTuneConnect;
+			};
+			name = Debug;
+		};
+		1D6058950D05DD3E006BFB54 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = iTuneConnect_Prefix.pch;
+				INFOPLIST_FILE = "iTuneConnect-Info.plist";
+				PRODUCT_NAME = iTuneConnect;
+			};
+			name = Release;
+		};
+		C01FCF4F08A954540054247B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.1.2;
+			};
+			name = Debug;
+		};
+		C01FCF5008A954540054247B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = iphoneos3.1.2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6058960D05DD3E006BFB54 /* Build configuration list for PBXNativeTarget "iTuneConnect" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1D6058940D05DD3E006BFB54 /* Debug */,
+				1D6058950D05DD3E006BFB54 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C01FCF4E08A954540054247B /* Build configuration list for PBXProject "iTuneConnect" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C01FCF4F08A954540054247B /* Debug */,
+				C01FCF5008A954540054247B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 29B97313FDCFA39411CA2CEA /* Project object */;
+}

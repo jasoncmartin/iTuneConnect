@@ -11,8 +11,8 @@ Using **iTuneConnect** is very simple. Simply start playing some music on your i
 Requirements
 ============
 
-* iPhone OS 3.0 or greater
-* A Mac running at least Mac OS X 10.4 or later and [TuneConnect](http://www.tuneconnect.net/)
+*   iPhone OS 3.0 or greater
+*   A Mac running at least Mac OS X 10.4 or later and [TuneConnect](http://www.tuneconnect.net/)
 
 License
 =======
