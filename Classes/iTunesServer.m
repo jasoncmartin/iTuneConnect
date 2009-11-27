@@ -78,10 +78,20 @@
 	[server sendDictionary:dictionary asJSON:AS_JSON];
 }
 
+- (void)setPlayerPosition:(SimpleHTTPConnection *)connection withServer:(TuneConnectServer *)server andParameters:(NSDictionary *)params {
+	if(![params valueForKey:@"position"])
+		[server sendFourOhFour:AS_JSON];
+	
+	[[MPMusicPlayerController iPodMusicPlayer] setCurrentPlaybackTime:[[params valueForKey:@"position"] intValue]];
+	
+	[server sendSuccess:AS_JSON];
+}
+
 #pragma mark -
 #pragma mark Sources and Playlists
 
 - (void)getSources:(SimpleHTTPConnection *)connection withServer:(TuneConnectServer *)server andParameters:(NSDictionary *)params {
+	// Only one kind of souce, doesn't really show up, so fake it.
 	[server sendDictionary:[NSDictionary dictionaryWithObject:[NSArray arrayWithObject:[NSDictionary dictionaryWithObjectsAndKeys:
 																						@"Library", @"name",
 																						@"39", @"id",
@@ -232,6 +242,28 @@
 	
 	// TuneConnect gives us a number between 0 and 100, but iPhone needs between 0.0 and 1.0.
 	[[MPMusicPlayerController iPodMusicPlayer] setVolume:[[params valueForKey:@"volume"] floatValue] / 100];
+	
+	[server sendSuccess:AS_JSON];
+}
+
+- (void)volumeUp:(SimpleHTTPConnection *)connection withServer:(TuneConnectServer *)server andParameters:(NSDictionary *)params {
+	float volume = [[MPMusicPlayerController iPodMusicPlayer] volume] + .1;
+	
+	if(volume > 1.0)
+		volume == 1.0;
+	
+	[[MPMusicPlayerController iPodMusicPlayer] setVolume:volume];
+	
+	[server sendSuccess:AS_JSON];
+}
+
+- (void)volumeDown:(SimpleHTTPConnection *)connection withServer:(TuneConnectServer *)server andParameters:(NSDictionary *)params {
+	float volume = [[MPMusicPlayerController iPodMusicPlayer] volume] - .1;
+	
+	if(volume < 0.0)
+		volume == 0.0;
+	
+	[[MPMusicPlayerController iPodMusicPlayer] setVolume:volume];
 	
 	[server sendSuccess:AS_JSON];
 }
