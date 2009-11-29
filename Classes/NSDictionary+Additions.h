@@ -2,7 +2,7 @@
 //  NSDictionary+Additions.h
 //  iTuneConnect
 //
-//  Created by Grant Butler on 10/31/09.
+//  Created by Jason C. Martin on 10/31/09.
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 

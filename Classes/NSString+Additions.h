@@ -19,7 +19,7 @@
 //  NSString+Additions.h
 //  iTuneConnect
 //
-//  Created by Grant Butler on 10/27/09.
+//  Created by Jason C. Martin on 10/27/09.
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
@@ -29,5 +29,6 @@
 @interface NSString (OurAdditions)
 
 - (NSString *)sha1;
+- (NSString *)md5;
 
 @end

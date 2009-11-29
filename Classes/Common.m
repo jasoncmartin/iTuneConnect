@@ -19,7 +19,7 @@
 //  Common.m
 //  iTuneConnect
 //
-//  Created by Grant Butler on 10/16/09.
+//  Created by Jason C. Martin on 10/16/09.
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 

@@ -19,7 +19,7 @@
 //  iTunesServer.m
 //  iTuneConnect
 //
-//  Created by Grant Butler on 10/18/09.
+//  Created by Jason C. Martin on 10/18/09.
 //  Copyright 2009 __MyCompanyName__. All rights reserved.
 //
 
@@ -303,7 +303,7 @@
 	NSString *playlistID = [parts objectAtIndex:0];
 	NSString *sourceID = [parts objectAtIndex:1];
 	
-	//NSArray *allTracks = [];
+	NSArray *allTracks = [[[MPMediaQuery playlistsQuery] addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[NSNumber numberWithUnsignedLongLong:[playlistID unsignedLongLongValue]] forProperty:MPMediaPlaylistPropertyPersistentID]] items];
 	
 	return nil;
 }
