@@ -295,17 +295,17 @@
 
 // TODO: Finish implementation of this.
 
-- (NSArray *)composeTrackArray:(NSDictionary *)params {
-	NSArray *parts = [[params valueForKey:@"ofPlaylist"] componentsSeparatedByString:@":"];
-	
-	NSMutableArray *tracks = [NSMutableArray array];
-	
-	NSString *playlistID = [parts objectAtIndex:0];
-	NSString *sourceID = [parts objectAtIndex:1];
-	
-	NSArray *allTracks = [[[MPMediaQuery playlistsQuery] addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[NSNumber numberWithUnsignedLongLong:[playlistID unsignedLongLongValue]] forProperty:MPMediaPlaylistPropertyPersistentID]] items];
-	
-	return nil;
-}
+//- (NSArray *)composeTrackArray:(NSDictionary *)params {
+//	NSArray *parts = [[params valueForKey:@"ofPlaylist"] componentsSeparatedByString:@":"];
+//	
+//	NSMutableArray *tracks = [NSMutableArray array];
+//	
+//	NSString *playlistID = [parts objectAtIndex:0];
+//	NSString *sourceID = [parts objectAtIndex:1];
+//	
+//	NSArray *allTracks = [[[MPMediaQuery playlistsQuery] addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[NSNumber numberWithUnsignedLongLong:[playlistID unsignedLongLongValue]] forProperty:MPMediaPlaylistPropertyPersistentID]] items];
+//	
+//	return nil;
+//}
 
 @end

@@ -43,10 +43,10 @@
 
 @end
 
-static void setBackgroundingEnabled(int signal)
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:UIApplicationBackgroundingNotification object:nil];
-}
+//static void setBackgroundingEnabled(int signal)
+//{
+//    [[NSNotificationCenter defaultCenter] postNotificationName:UIApplicationBackgroundingNotification object:nil];
+//}
 
 @implementation iTuneConnectAppDelegate
 
@@ -54,17 +54,17 @@ static void setBackgroundingEnabled(int signal)
 
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
-	if([[UIApplication sharedApplication] respondsToSelector:@selector(setBackgroundingEnabled:)]) {
-		//TTSwapMethods([UIApplication class], @selector(setBackgroundingEnabled:), @selector(ourSetBackgroundingEnabled:));
-		
-		sigset_t block_mask;
-		sigfillset(&block_mask);
-		struct sigaction action;
-		action.sa_handler = setBackgroundingEnabled;
-		action.sa_mask = block_mask;
-		action.sa_flags = 0;
-		sigaction(SIGUSR1, &action, NULL);
-	}
+//	if([[UIApplication sharedApplication] respondsToSelector:@selector(setBackgroundingEnabled:)]) {
+//		//TTSwapMethods([UIApplication class], @selector(setBackgroundingEnabled:), @selector(ourSetBackgroundingEnabled:));
+//		
+//		sigset_t block_mask;
+//		sigfillset(&block_mask);
+//		struct sigaction action;
+//		action.sa_handler = setBackgroundingEnabled;
+//		action.sa_mask = block_mask;
+//		action.sa_flags = 0;
+//		sigaction(SIGUSR1, &action, NULL);
+//	}
 	
 	[[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
 															 [NSNumber numberWithInt:86400], NSDefaultLibraryExpiryTime,
@@ -86,8 +86,6 @@ static void setBackgroundingEnabled(int signal)
 	
 	server = [[TuneConnectServer alloc] init];
 	
-	//NSLog(@"port: %i password: %@", [[NSUserDefaults standardUserDefaults] integerForKey:NSDefaultPort], [[NSUserDefaults standardUserDefaults] stringForKey:NSDefaultPassword]);
-	
 	[server setPort:[[NSUserDefaults standardUserDefaults] integerForKey:NSDefaultPort]];
 	
 	if([[NSUserDefaults standardUserDefaults] boolForKey:NSDefaultPasswordEnabled])
@@ -108,9 +106,6 @@ static void setBackgroundingEnabled(int signal)
 
 - (void)playingItemChanged:(id)unused {
 	// Update the UI to reflect this new item.
-	
-	// Check to see if we're running on a jailbroken iPhone in the background. If we are, we don't want to waste memory on updating the UI.
-//	NSLog(@"%@ %@", [NSNumber numberWithBool:[UIApplication respondsToSelector:@selector(isBackgroundingEnabled)]], [NSNumber numberWithBool:[[UIApplication sharedApplication] respondsToSelector:@selector(isBackgroundingEnabled)]]);
 	
 //	if([[UIApplication sharedApplication] respondsToSelector:@selector(isBackgroundingEnabled)]) {
 //		NSLog(@"%@", [NSNumber numberWithBool:[[UIApplication sharedApplication] isBackgroundingEnabled]]);
@@ -168,16 +163,14 @@ static void setBackgroundingEnabled(int signal)
 	[svc release];
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application {
-	[server stop];
-	[server release];
-	server = nil;
-}
-
 - (void)dealloc {
 	[[MPMusicPlayerController iPodMusicPlayer] endGeneratingPlaybackNotifications];
 	
 	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	
+	[server stop];
+	[server release];
+	server = nil;
 	
 	[controller release];
 	controller = nil;

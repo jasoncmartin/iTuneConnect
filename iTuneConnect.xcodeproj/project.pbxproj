@@ -32,6 +32,7 @@
 		C3726F081092038700EE47B9 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3726F061092038700EE47B9 /* SettingsViewController.xib */; };
 		C3B212BB108BBC6800B8198C /* NSObject+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B212BA108BBC6800B8198C /* NSObject+Additions.m */; };
 		C3BC75301097D54A00141627 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC752F1097D54A00141627 /* NSString+Additions.m */; };
+		C3D28F9E10C47F91008546B5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3D28F9D10C47F91008546B5 /* Localizable.strings */; };
 		C3ECC29F108E7B8700B3D23A /* no-art.png in Resources */ = {isa = PBXBuildFile; fileRef = C3ECC29E108E7B8700B3D23A /* no-art.png */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +83,7 @@
 		C3B212BA108BBC6800B8198C /* NSObject+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Additions.m"; sourceTree = "<group>"; };
 		C3BC752E1097D54A00141627 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
 		C3BC752F1097D54A00141627 /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
+		C3D28F9B10C47F8C008546B5 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C3ECC29E108E7B8700B3D23A /* no-art.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no-art.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -157,6 +159,7 @@
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* iTuneConnect-Info.plist */,
 				C3726F061092038700EE47B9 /* SettingsViewController.xib */,
+				C3D28F9D10C47F91008546B5 /* Localizable.strings */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -264,6 +267,7 @@
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
 				C3ECC29F108E7B8700B3D23A /* no-art.png in Resources */,
 				C3726F081092038700EE47B9 /* SettingsViewController.xib in Resources */,
+				C3D28F9E10C47F91008546B5 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,6 +300,17 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		C3D28F9D10C47F91008546B5 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C3D28F9B10C47F8C008546B5 /* English */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		1D6058940D05DD3E006BFB54 /* Debug */ = {

@@ -29,8 +29,8 @@
 
 @interface TuneConnectServer (Private)
 
-- (SEL)convertToSelector:(NSString *)aPath;
-- (BOOL)authorizationValid:(SimpleHTTPConnection *)connection withParams:(NSDictionary *)params;
+- (SEL)_convertToSelector:(NSString *)aPath;
+- (BOOL)_authorizationValid:(SimpleHTTPConnection *)connection withParams:(NSDictionary *)params;
 
 @end
 
@@ -82,10 +82,6 @@
 #pragma mark -
 #pragma mark NSNetService Delegate Methods
 
-- (void)netServiceWillPublish:(NSNetService *)netService {
-	
-}
-
 - (void)netService:(NSNetService *)sender didNotPublish:(NSDictionary *)errorDict {
 	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Unable to start server (%@)", [errorDict valueForKey:NSNetServicesErrorCode]] delegate:nil cancelButtonTitle:@"" otherButtonTitles:@"OK"];
 	[alert show];
@@ -93,8 +89,6 @@
 }
 
 - (void)processURL:(NSURL *)URL connection:(SimpleHTTPConnection *)connection {
-	//NSLog(@"Full URL:%@, path:%@, query:%@", URL, [URL path], [URL query]);
-	
 	NSString *path = [URL path];
 	
 	if([path hasPrefix:@"/"]) {
@@ -110,8 +104,6 @@
 		[params setObject:[parts objectAtIndex:1] forKey:[parts objectAtIndex:0]];
 	}
 	
-	//NSLog(@"%@", [path stringByAppendingString:@":withServer:andParameters:"]);
-	
 	if([path isEqualToString:@"serverInfo.txt"]) {
 		// Okay, they want server info. Let's give it to them!
 		[self sendDictionary:[NSDictionary dictionaryWithObjectsAndKeys:
@@ -124,27 +116,21 @@
 							  ] asJSON:![[params valueForKey:@"asPlist"] boolValue]];
 		
 		return;
-	} else if([itunes respondsToSelector:[self convertToSelector:path]]) {
+	} else if([itunes respondsToSelector:[self _convertToSelector:path]]) {
 		if([[NSUserDefaults standardUserDefaults] boolForKey:NSDefaultPasswordEnabled]) {
-			if(![self authorizationValid:connection withParams:params]) {
+			if(![self _authorizationValid:connection withParams:params]) {
 				[self sendFourOhThree:![[params valueForKey:@"asPlist"] boolValue]];
 				
 				return;
 			}
 		}
 		
-		[itunes performSelector:[self convertToSelector:path] withObject:connection withObject:self withObject:params];
+		[itunes performSelector:[self _convertToSelector:path] withObject:connection withObject:self withObject:params];
 		
 		return;
 	}
 	
 	[self sendFourOhFour:![[params valueForKey:@"asPlist"] boolValue]];
-}
-
-- (BOOL)authorizationValid:(SimpleHTTPConnection *)connection withParams:(NSDictionary *)params {
-	NSString *passcode = [[NSString stringWithFormat:@"%@%@", [[NSUserDefaults standardUserDefaults] stringForKey:NSDefaultPassword], [connection address]] sha1];
-	
-	return ([[params valueForKey:@"authKey"] isEqualToString:passcode]);
 }
 
 - (void)sendSuccess:(BOOL)asJson {
@@ -176,8 +162,6 @@
 		response = [NSPropertyListSerialization dataFromPropertyList:json format:kCFPropertyListXMLFormat_v1_0 errorDescription:nil];
 	}
 	
-	//NSLog(@"%@", [[[NSString alloc] initWithData:response encoding:NSUTF8StringEncoding] autorelease]);
-	
 	[server replyWithStatusCode:aCode data:response MIMEType:((asJson) ? @"text/plain" : @"text/xml")];
 }
 
@@ -185,7 +169,13 @@
 	[server replyWithStatusCode:code headers:headers body:body];
 }
 
-- (SEL)convertToSelector:(NSString *)aPath {
+- (BOOL)_authorizationValid:(SimpleHTTPConnection *)connection withParams:(NSDictionary *)params {
+	NSString *passcode = [[NSString stringWithFormat:@"%@%@", [[NSUserDefaults standardUserDefaults] stringForKey:NSDefaultPassword], [connection address]] sha1];
+	
+	return ([[params valueForKey:@"authKey"] isEqualToString:passcode]);
+}
+
+- (SEL)_convertToSelector:(NSString *)aPath {
 	return NSSelectorFromString([aPath stringByAppendingString:@":withServer:andParameters:"]);
 }
 
