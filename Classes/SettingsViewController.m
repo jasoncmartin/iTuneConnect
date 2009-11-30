@@ -87,7 +87,7 @@ enum SettingsRows {
 	}
 	
 	if (indexPath.section) {
-		[cell.textLabel setText:@"Port"];
+		[cell.textLabel setText:NSLocalizedString(@"Port", @"Port")];
 		
 		UITextField *portField = [[UITextField alloc] initWithFrame:CGRectMake(91, 0, 210, 44.0)];
 		[portField setClearButtonMode:UITextFieldViewModeWhileEditing];
@@ -103,7 +103,7 @@ enum SettingsRows {
 	
 	switch (indexPath.row) {
 		case SettingsRowsPasswordOnOff:
-			[cell.textLabel setText:@"Use Password?"];
+			[cell.textLabel setText:NSLocalizedString(@"Use Password?", @"Use Password?")];
 			
 			UISwitch *aSwitch = [[UISwitch alloc] initWithFrame:CGRectMake(205.0, 9.0, 94.0, 27.0)];
 			aSwitch.on = [[NSUserDefaults standardUserDefaults] boolForKey:NSDefaultPasswordEnabled];
@@ -115,7 +115,7 @@ enum SettingsRows {
 			
 			break;
 		case SettingsRowsPasswordEntry:
-			[cell.textLabel setText:@"Password"];
+			[cell.textLabel setText:NSLocalizedString(@"Password", @"Password")];
 			
 			UITextField *portField = [[UITextField alloc] initWithFrame:CGRectMake(91, 0, 210, 44.0)];
 			[portField setClearButtonMode:UITextFieldViewModeWhileEditing];
@@ -198,7 +198,7 @@ enum SettingsRows {
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
-	return @"Delete";
+	return NSLocalizedString(@"Delete", @"Delete");
 }
 
 - (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath {

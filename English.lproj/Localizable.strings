@@ -1,0 +1,17 @@
+/* 
+   Localizable.strings
+   iTuneConnect
+
+   Created by Jason C. Martin on 11/30/09.
+   Copyright 2009 New Media Geekz. All rights reserved.
+ */
+
+"OK" = "OK";
+"Error" = "Error";
+"Unable to start server (%@)" = "Unable to start server (%@)";
+
+"Port" = "Port";
+"Use Password?" = "Use Password?";
+"Password" = "Password";
+
+"Delete" = "Delete";

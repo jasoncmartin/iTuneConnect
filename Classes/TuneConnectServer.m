@@ -83,7 +83,7 @@
 #pragma mark NSNetService Delegate Methods
 
 - (void)netService:(NSNetService *)sender didNotPublish:(NSDictionary *)errorDict {
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:[NSString stringWithFormat:@"Unable to start server (%@)", [errorDict valueForKey:NSNetServicesErrorCode]] delegate:nil cancelButtonTitle:@"" otherButtonTitles:@"OK"];
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", @"Error") message:[NSString stringWithFormat:NSLocalizedString(@"Unable to start server (%@)", @"Unable to start server (%@)"), [errorDict valueForKey:NSNetServicesErrorCode]] delegate:nil cancelButtonTitle:@"" otherButtonTitles:NSLocalizedString(@"OK", @"OK")];
 	[alert show];
 	[alert release];
 }
