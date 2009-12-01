@@ -32,6 +32,7 @@
 		C3726F081092038700EE47B9 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3726F061092038700EE47B9 /* SettingsViewController.xib */; };
 		C3B212BB108BBC6800B8198C /* NSObject+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B212BA108BBC6800B8198C /* NSObject+Additions.m */; };
 		C3BC75301097D54A00141627 /* NSString+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BC752F1097D54A00141627 /* NSString+Additions.m */; };
+		C3BD4CAC10C4ADF1007F3A04 /* MPMediaPlaylist-Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = C3BD4CAB10C4ADF1007F3A04 /* MPMediaPlaylist-Properties.m */; };
 		C3D28F9E10C47F91008546B5 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = C3D28F9D10C47F91008546B5 /* Localizable.strings */; };
 		C3ECC29F108E7B8700B3D23A /* no-art.png in Resources */ = {isa = PBXBuildFile; fileRef = C3ECC29E108E7B8700B3D23A /* no-art.png */; };
 /* End PBXBuildFile section */
@@ -83,6 +84,8 @@
 		C3B212BA108BBC6800B8198C /* NSObject+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Additions.m"; sourceTree = "<group>"; };
 		C3BC752E1097D54A00141627 /* NSString+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+Additions.h"; sourceTree = "<group>"; };
 		C3BC752F1097D54A00141627 /* NSString+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+Additions.m"; sourceTree = "<group>"; };
+		C3BD4CAA10C4ADF1007F3A04 /* MPMediaPlaylist-Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPMediaPlaylist-Properties.h"; sourceTree = "<group>"; };
+		C3BD4CAB10C4ADF1007F3A04 /* MPMediaPlaylist-Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPMediaPlaylist-Properties.m"; sourceTree = "<group>"; };
 		C3D28F9B10C47F8C008546B5 /* English */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/Localizable.strings; sourceTree = "<group>"; };
 		C3ECC29E108E7B8700B3D23A /* no-art.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no-art.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -218,6 +221,8 @@
 				C313006B109C7E13003097C6 /* NSDictionary+Additions.m */,
 				C33A769F10B47E8400BFC8BF /* MPMediaItem-Properties.h */,
 				C33A76A010B47E8400BFC8BF /* MPMediaItem-Properties.m */,
+				C3BD4CAA10C4ADF1007F3A04 /* MPMediaPlaylist-Properties.h */,
+				C3BD4CAB10C4ADF1007F3A04 /* MPMediaPlaylist-Properties.m */,
 			);
 			name = Additions;
 			sourceTree = "<group>";
@@ -296,6 +301,7 @@
 				C313006C109C7E13003097C6 /* NSDictionary+Additions.m in Sources */,
 				C36A540E10AE57EF00952CD7 /* SettingsViewController.m in Sources */,
 				C33A76A110B47E8400BFC8BF /* MPMediaItem-Properties.m in Sources */,
+				C3BD4CAC10C4ADF1007F3A04 /* MPMediaPlaylist-Properties.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

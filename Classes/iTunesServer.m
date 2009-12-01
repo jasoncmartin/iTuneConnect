@@ -164,24 +164,14 @@
 		
 		MPMediaPlaylist *item = [[query collections] objectAtIndex:0];
 		
-		NSDictionary *playlist;
-		
-		if([[params valueForKey:@"dehydrated"] boolValue]) {
-			playlist = [NSDictionary dictionaryWithObjectsAndKeys:
-							  [item valueForProperty:MPMediaPlaylistPropertyName], @"name",
-							  [NSString stringWithFormat:@"%@:%@", [item valueForProperty:MPMediaPlaylistPropertyPersistentID], [refParts objectAtIndex:1]], @"ref",
-							  nil
-							  ];
-		} else {
-			playlist = [NSDictionary dictionaryWithObjectsAndKeys:
+		NSDictionary *playlist = [NSDictionary dictionaryWithObjectsAndKeys:
 							  [item valueForProperty:MPMediaPlaylistPropertyPersistentID], @"id",
 							  [item valueForProperty:MPMediaPlaylistPropertyName], @"name",
 							  [refParts objectAtIndex:1], @"source",
 							  [NSNumber numberWithUnsignedInt:[item count]], @"trackCount",
-							  [NSNumber numberWithBool:[[item valueForProperty:MPMediaPlaylistPropertyPlaylistAttributes] intValue] & MPMediaPlaylistAttributeSmart], @"isSmart",
+							  @"", @"specialKind",
 							  nil
 							  ];
-		}
 		
 		[server sendDictionary:playlist asJSON:AS_JSON];
 		
