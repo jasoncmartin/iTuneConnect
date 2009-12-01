@@ -78,11 +78,94 @@
 	[server sendDictionary:dictionary asJSON:AS_JSON];
 }
 
+- (void)currentTrack:(SimpleHTTPConnection *)connection withServer:(TuneConnectServer *)server andParameters:(NSDictionary *)params {
+	NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+	[dictionary setValue:[NSNumber numberWithBool:NO] forKey:@"name"];
+
+	if([[MPMusicPlayerController iPodMusicPlayer] nowPlayingItem] != nil) {
+		MPMediaItem *item = [[MPMusicPlayerController iPodMusicPlayer] nowPlayingItem];
+		
+		[dictionary setValue:[item valueForProperty:MPMediaItemPropertyTitle] forKey:@"name"];
+		[dictionary setValue:[item valueForProperty:MPMediaItemPropertyArtist] forKey:@"artist"];
+		[dictionary setValue:[item valueForProperty:MPMediaItemPropertyAlbumTitle] forKey:@"album"];
+		[dictionary setValue:[item valueForProperty:MPMediaItemPropertyPlaybackDuration] forKey:@"duration"];
+		
+		if([[params valueForKey:@"genre"] boolValue])
+			[dictionary setValue:[item valueForProperty:MPMediaItemPropertyGenre] forKey:@"genre"];
+		
+		if([[params valueForKey:@"rating"] boolValue])
+			[dictionary setValue:[item valueForProperty:MPMediaItemPropertyRating] forKey:@"rating"];
+		
+		if([[params valueForKey:@"composer"] boolValue])
+			[dictionary setValue:[item valueForProperty:MPMediaItemPropertyComposer] forKey:@"composer"];
+		
+		if([[params valueForKey:@"playCount"] boolValue])
+			[dictionary setValue:[item valueForProperty:MPMediaItemPropertyPlayCount] forKey:@"playCount"];
+	}
+	
+	[server sendDictionary:dictionary asJSON:AS_JSON];
+}
+
+- (void)playerStatus:(SimpleHTTPConnection *)connection withServer:(TuneConnectServer *)server andParameters:(NSDictionary *)params {
+	float volume = [[MPMusicPlayerController iPodMusicPlayer] volume];
+	NSTimeInterval progress = [[MPMusicPlayerController iPodMusicPlayer] currentPlaybackTime];
+	MPMusicPlaybackState playbackstate = [[MPMusicPlayerController iPodMusicPlayer] playbackState];
+	
+	NSString *state = @"stopped";
+	
+	if(playbackstate == MPMusicPlaybackStatePlaying) {
+		state = @"playing";
+	} else if(playbackstate == MPMusicPlaybackStatePaused) {
+		state = @"pasued";
+	}
+	
+	NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+	[dictionary setValue:[NSNumber numberWithFloat:volume * 100] forKey:@"volume"];
+	[dictionary setValue:[NSNumber numberWithInt:progress] forKey:@"progress"];
+	[dictionary setValue:state forKey:@"playState"];
+	
+	[server sendDictionary:dictionary asJSON:AS_JSON];
+}
+
 - (void)setPlayerPosition:(SimpleHTTPConnection *)connection withServer:(TuneConnectServer *)server andParameters:(NSDictionary *)params {
 	if(![params valueForKey:@"position"])
 		[server sendFourOhFour:AS_JSON];
 	
 	[[MPMusicPlayerController iPodMusicPlayer] setCurrentPlaybackTime:[[params valueForKey:@"position"] intValue]];
+	
+	[server sendSuccess:AS_JSON];
+}
+
+- (void)playSettings:(SimpleHTTPConnection *)connection withServer:(TuneConnectServer *)server andParameters:(NSDictionary *)params {
+	MPMusicRepeatMode repeatMode = [[MPMusicPlayerController iPodMusicPlayer] repeatMode];
+	
+	NSString *repeat = @"repeat-off";
+	
+	if(repeatMode == MPMusicRepeatModeOne) {
+		repeat = @"repeat-one";
+	} else if(repeatMode == MPMusicRepeatModeAll) {
+		repeat = @"repeat-all";
+	}
+	
+	[server sendDictionary:[NSDictionary dictionaryWithObjectsAndKeys:repeat, @"repeat", [NSNumber numberWithBool:([[MPMusicPlayerController iPodMusicPlayer] shuffleMode] == MPMusicShuffleModeSongs || [[MPMusicPlayerController iPodMusicPlayer] shuffleMode] == MPMusicShuffleModeAlbums)], nil] asJSON:AS_JSON];
+}
+
+- (void)setPlaySettings:(SimpleHTTPConnection *)connection withServer:(TuneConnectServer *)server andParameters:(NSDictionary *)params {
+	MPMusicRepeatMode repeatMode = MPMusicRepeatModeNone;
+	
+	if([[params valueForKey:@"repeat"] isEqualToString:@"repeat-one"]) {
+		repeatMode = MPMusicRepeatModeOne;
+	} else if([[params valueForKey:@"repeat"] isEqualToString:@"repeat-all"]) {
+		repeatMode = MPMusicRepeatModeAll;
+	}
+	
+	[[MPMusicPlayerController iPodMusicPlayer] setRepeatMode:repeatMode];
+	
+	if([[params valueForKey:@"shuffle"] boolValue]) {
+		[[MPMusicPlayerController iPodMusicPlayer] setShuffleMode:MPMusicShuffleModeSongs];
+	} else {
+		[[MPMusicPlayerController iPodMusicPlayer] setShuffleMode:MPMusicShuffleModeOff];
+	}
 	
 	[server sendSuccess:AS_JSON];
 }
@@ -165,11 +248,12 @@
 		MPMediaPlaylist *item = [[query collections] objectAtIndex:0];
 		
 		NSDictionary *playlist = [NSDictionary dictionaryWithObjectsAndKeys:
-							  [item valueForProperty:MPMediaPlaylistPropertyPersistentID], @"id",
-							  [item valueForProperty:MPMediaPlaylistPropertyName], @"name",
+							  [NSNumber numberWithUnsignedLongLong:item.persistentID], @"id",
+							  item.name, @"name",
 							  [refParts objectAtIndex:1], @"source",
-							  [NSNumber numberWithUnsignedInt:[item count]], @"trackCount",
+							  [NSNumber numberWithInt:[item count]], @"trackCount",
 							  @"", @"specialKind",
+							  [NSNumber numberWithInt:item.duration], @"duration",
 							  nil
 							  ];
 		

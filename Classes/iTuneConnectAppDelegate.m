@@ -29,12 +29,6 @@
 #import "SettingsViewController.h"
 #import <MediaPlayer/MediaPlayer.h>
 
-@interface UIApplication (BackgrounderStuff)
-
-//- (BOOL)isBackgroundingEnabled;
-
-@end
-
 
 @interface iTuneConnectAppDelegate (private)
 
@@ -43,29 +37,12 @@
 
 @end
 
-//static void setBackgroundingEnabled(int signal)
-//{
-//    [[NSNotificationCenter defaultCenter] postNotificationName:UIApplicationBackgroundingNotification object:nil];
-//}
-
 @implementation iTuneConnectAppDelegate
 
 @synthesize window, controller;
 
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
-//	if([[UIApplication sharedApplication] respondsToSelector:@selector(setBackgroundingEnabled:)]) {
-//		//TTSwapMethods([UIApplication class], @selector(setBackgroundingEnabled:), @selector(ourSetBackgroundingEnabled:));
-//		
-//		sigset_t block_mask;
-//		sigfillset(&block_mask);
-//		struct sigaction action;
-//		action.sa_handler = setBackgroundingEnabled;
-//		action.sa_mask = block_mask;
-//		action.sa_flags = 0;
-//		sigaction(SIGUSR1, &action, NULL);
-//	}
-	
 	[[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
 															 [NSNumber numberWithInt:86400], NSDefaultLibraryExpiryTime,
 															 [NSNumber numberWithBool:NO], NSDefaultPasswordEnabled,
@@ -106,36 +83,6 @@
 
 - (void)playingItemChanged:(id)unused {
 	// Update the UI to reflect this new item.
-	
-//	if([[UIApplication sharedApplication] respondsToSelector:@selector(isBackgroundingEnabled)]) {
-//		NSLog(@"%@", [NSNumber numberWithBool:[[UIApplication sharedApplication] isBackgroundingEnabled]]);
-//		
-//		if([[UIApplication sharedApplication] isBackgroundingEnabled]) {
-//			if(!inBackground) {
-//				// Update our UI to tell the user that we're running in the background and will not update the UI as such.
-//				[UIView beginAnimations:@"" context:NULL];
-//				
-//				overlayView.alpha = 1.0;
-//				
-//				[UIView commitAnimations];
-//				
-//				inBackground = YES;
-//			}
-//			
-//			return;
-//		} else {
-//			if(inBackground) {
-//				[UIView beginAnimations:@"" context:NULL];
-//				
-//				overlayView.alpha = 0.0;
-//				
-//				[UIView commitAnimations];
-//				
-//				inBackground = NO;
-//			}
-//		}
-//	}
-	
 	if([[MPMusicPlayerController iPodMusicPlayer] nowPlayingItem] == nil)
 		return;
 	

@@ -18,7 +18,7 @@
 		interval = 0;
 		
 		for(MPMediaItem *item in [self items]) {
-			interval += [item valueForProperty:MPMediaItemPropertyPlaybackDuration];
+			interval += [[item valueForProperty:MPMediaItemPropertyPlaybackDuration] intValue];
 		}
 	}
 	
