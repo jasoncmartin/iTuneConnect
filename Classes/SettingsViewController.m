@@ -198,7 +198,11 @@ enum SettingsRows {
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath {
-	
+	if(indexPath.row == SettingsRowsPasswordEntry) {
+		[[(UITextField *)[tv cellForRowAtIndexPath:indexPath] viewWithTag:SettingsRowsPasswordEntry] becomeFirstResponder];
+	} else if(indexPath.row == SettingsRowsPort) {
+		[[(UITextField *)[tv cellForRowAtIndexPath:indexPath] viewWithTag:SettingsRowsPort] becomeFirstResponder];
+	}
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForDeleteConfirmationButtonForRowAtIndexPath:(NSIndexPath *)indexPath {
