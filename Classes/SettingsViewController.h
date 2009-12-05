@@ -32,4 +32,6 @@
 	UITextField *activeTextField;
 }
 
+- (IBAction)goBack:(id)sender;
+
 @end

@@ -61,6 +61,10 @@ enum SettingsRows {
 }
 */
 
+- (IBAction)goBack:(id)sender {
+	[[self navigationController] dismissModalViewControllerAnimated:YES];
+}
+
 
 #pragma mark UITableViewDataSource Methods
 #pragma mark -
@@ -89,7 +93,7 @@ enum SettingsRows {
 	if (indexPath.section) {
 		[cell.textLabel setText:NSLocalizedString(@"Port", @"Port")];
 		
-		UITextField *portField = [[UITextField alloc] initWithFrame:CGRectMake(91, 0, 210, 44.0)];
+		UITextField *portField = [[UITextField alloc] initWithFrame:CGRectMake(91, 9, 210, 27.0)];
 		[portField setClearButtonMode:UITextFieldViewModeWhileEditing];
 		[portField setText:[[NSUserDefaults standardUserDefaults] stringForKey:NSDefaultPort]];
 		[portField setKeyboardType:UIKeyboardTypeNumberPad];
@@ -117,7 +121,7 @@ enum SettingsRows {
 		case SettingsRowsPasswordEntry:
 			[cell.textLabel setText:NSLocalizedString(@"Password", @"Password")];
 			
-			UITextField *portField = [[UITextField alloc] initWithFrame:CGRectMake(91, 0, 210, 44.0)];
+			UITextField *portField = [[UITextField alloc] initWithFrame:CGRectMake(91, 9.0, 210, 27.0)];
 			[portField setClearButtonMode:UITextFieldViewModeWhileEditing];
 			[portField setText:[[NSUserDefaults standardUserDefaults] stringForKey:NSDefaultPassword]];
 			[portField setTextAlignment:UITextAlignmentRight];
