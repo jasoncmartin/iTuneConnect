@@ -44,10 +44,13 @@
 
 - (void)applicationDidFinishLaunching:(UIApplication *)application {
 	[[NSUserDefaults standardUserDefaults] registerDefaults:[NSDictionary dictionaryWithObjectsAndKeys:
-															 [NSNumber numberWithInt:86400], NSDefaultLibraryExpiryTime,
 															 [NSNumber numberWithBool:NO], NSDefaultPasswordEnabled,
 															 @"", NSDefaultPassword,
 															 [NSNumber numberWithInt:4242], NSDefaultPort,
+															 
+															 // TODO: Remove settings below this comment.
+															 
+															 [NSNumber numberWithInt:86400], NSDefaultLibraryExpiryTime,
 															 [NSNumber numberWithBool:YES], NSDefaultUseLibraryFile,
 															 [NSNumber numberWithFloat:.6], NSDefaultDsThreshold,
 															 nil
@@ -70,7 +73,7 @@
 	
 	[server start];
 	
-	inBackground = NO;
+	//inBackground = NO;
 	
 	[self playingItemChanged:nil];
 }

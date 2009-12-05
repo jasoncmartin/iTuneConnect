@@ -35,10 +35,13 @@
 	NSNetService *service;
 	SimpleHTTPServer *server;
 	iTunesServer *itunes;
+	
+	BOOL running;
 }
 
 @property (nonatomic, assign) NSInteger port;
 @property (nonatomic, retain) NSString *password;
+@property (readonly, assign, getter=isRunning) BOOL running;
 
 - (void)start;
 - (void)stop;

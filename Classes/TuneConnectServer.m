@@ -43,6 +43,8 @@
 	if(self = [super init]) {
 		port = 4242;
 		password = @"";
+		
+		running = NO;
 	}
 	
 	return self;
@@ -61,6 +63,8 @@
 	server = [[SimpleHTTPServer alloc] initWithTCPPort:port delegate:self];
 	
 	itunes = [[iTunesServer alloc] init];
+	
+	running = YES;
 }
 
 - (void)stop {
@@ -77,7 +81,17 @@
 	
 	[itunes release];
 	itunes = nil;
+	
+	running = NO;
 }
+
+- (void)dealloc {
+	if(running)
+		[self stop];
+	
+	[super dealloc];
+}
+
 
 #pragma mark -
 #pragma mark NSNetService Delegate Methods
@@ -111,7 +125,7 @@
 							@"", @"suffix",
 							[NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:NSDefaultPasswordEnabled]], @"requiresPassword",
 							[NSNumber numberWithBool:YES], @"supportsArtwork",
-							[NSArray array], @"extensions",
+							[NSArray array], @"extensions", // No extensions because the iPhone can't load extra compiled code.
 							nil
 							  ] asJSON:![[params valueForKey:@"asPlist"] boolValue]];
 		

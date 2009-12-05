@@ -2,18 +2,18 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="7.10">
 	<data>
 		<int key="IBDocument.SystemTarget">784</int>
-		<string key="IBDocument.SystemVersion">10B504</string>
+		<string key="IBDocument.SystemVersion">10C540</string>
 		<string key="IBDocument.InterfaceBuilderVersion">740</string>
-		<string key="IBDocument.AppKitVersion">1038.2</string>
-		<string key="IBDocument.HIToolboxVersion">437.00</string>
+		<string key="IBDocument.AppKitVersion">1038.25</string>
+		<string key="IBDocument.HIToolboxVersion">458.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">62</string>
 		</object>
 		<object class="NSMutableArray" key="IBDocument.EditedObjectIDs">
 			<bool key="EncodedWithXMLCoder">YES</bool>
-			<integer value="25"/>
 			<integer value="2"/>
+			<integer value="17"/>
 		</object>
 		<object class="NSArray" key="IBDocument.PluginDependencies">
 			<bool key="EncodedWithXMLCoder">YES</bool>
@@ -43,7 +43,7 @@
 				<object class="NSPSMatrix" key="NSFrameMatrix"/>
 				<string key="NSFrameSize">{320, 480}</string>
 				<reference key="NSSuperview"/>
-				<object class="NSColor" key="IBUIBackgroundColor" id="953421331">
+				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">1</int>
 					<bytes key="NSRGB">MSAxIDEAA</bytes>
 				</object>
@@ -78,41 +78,21 @@
 								<bool key="EncodedWithXMLCoder">YES</bool>
 								<object class="IBUIView" id="196689385">
 									<reference key="NSNextResponder" ref="733849757"/>
-									<int key="NSvFlags">292</int>
+									<int key="NSvFlags">290</int>
 									<object class="NSMutableArray" key="NSSubviews">
 										<bool key="EncodedWithXMLCoder">YES</bool>
 										<object class="IBUILabel" id="524895938">
 											<reference key="NSNextResponder" ref="196689385"/>
 											<int key="NSvFlags">274</int>
-											<string key="NSFrame">{{0, -1}, {128, 14}}</string>
+											<string key="NSFrame">{{0, -5}, {230, 25}}</string>
 											<reference key="NSSuperview" ref="196689385"/>
 											<bool key="IBUIOpaque">NO</bool>
 											<bool key="IBUIClipsSubviews">YES</bool>
 											<bool key="IBUIUserInteractionEnabled">NO</bool>
 											<string key="IBUIText">Song Title</string>
-											<object class="NSFont" key="IBUIFont" id="444293574">
+											<object class="NSFont" key="IBUIFont" id="784145266">
 												<string key="NSName">Helvetica-Bold</string>
-												<double key="NSSize">11</double>
-												<int key="NSfFlags">16</int>
-											</object>
-											<reference key="IBUITextColor" ref="953421331"/>
-											<nil key="IBUIHighlightedColor"/>
-											<int key="IBUIBaselineAdjustment">1</int>
-											<float key="IBUIMinimumFontSize">10</float>
-											<int key="IBUITextAlignment">1</int>
-										</object>
-										<object class="IBUILabel" id="351146159">
-											<reference key="NSNextResponder" ref="196689385"/>
-											<int key="NSvFlags">274</int>
-											<string key="NSFrame">{{0, 10}, {128, 14}}</string>
-											<reference key="NSSuperview" ref="196689385"/>
-											<bool key="IBUIOpaque">NO</bool>
-											<bool key="IBUIClipsSubviews">YES</bool>
-											<bool key="IBUIUserInteractionEnabled">NO</bool>
-											<string key="IBUIText">Artist</string>
-											<object class="NSFont" key="IBUIFont">
-												<string key="NSName">Helvetica</string>
-												<double key="NSSize">11</double>
+												<double key="NSSize">12</double>
 												<int key="NSfFlags">16</int>
 											</object>
 											<object class="NSColor" key="IBUITextColor">
@@ -124,32 +104,58 @@
 											</object>
 											<nil key="IBUIHighlightedColor"/>
 											<int key="IBUIBaselineAdjustment">1</int>
+											<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
+											<float key="IBUIMinimumFontSize">10</float>
+											<int key="IBUITextAlignment">1</int>
+										</object>
+										<object class="IBUILabel" id="351146159">
+											<reference key="NSNextResponder" ref="196689385"/>
+											<int key="NSvFlags">274</int>
+											<string key="NSFrame">{{0, 11}, {230, 20}}</string>
+											<reference key="NSSuperview" ref="196689385"/>
+											<bool key="IBUIOpaque">NO</bool>
+											<bool key="IBUIClipsSubviews">YES</bool>
+											<bool key="IBUIUserInteractionEnabled">NO</bool>
+											<string key="IBUIText">Artist</string>
+											<reference key="IBUIFont" ref="784145266"/>
+											<object class="NSColor" key="IBUITextColor">
+												<int key="NSColorSpace">3</int>
+												<bytes key="NSWhite">MQA</bytes>
+												<reference key="NSCustomColorSpace" ref="264578591"/>
+											</object>
+											<nil key="IBUIHighlightedColor"/>
+											<int key="IBUIBaselineAdjustment">1</int>
+											<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 											<float key="IBUIMinimumFontSize">10</float>
 											<int key="IBUITextAlignment">1</int>
 										</object>
 										<object class="IBUILabel" id="619729661">
 											<reference key="NSNextResponder" ref="196689385"/>
 											<int key="NSvFlags">274</int>
-											<string key="NSFrame">{{0, 20}, {128, 14}}</string>
+											<string key="NSFrame">{{0, 22}, {230, 25}}</string>
 											<reference key="NSSuperview" ref="196689385"/>
 											<bool key="IBUIOpaque">NO</bool>
 											<bool key="IBUIClipsSubviews">YES</bool>
 											<bool key="IBUIUserInteractionEnabled">NO</bool>
 											<string key="IBUIText">Album</string>
-											<reference key="IBUIFont" ref="444293574"/>
-											<reference key="IBUITextColor" ref="953421331"/>
+											<reference key="IBUIFont" ref="784145266"/>
+											<object class="NSColor" key="IBUITextColor">
+												<int key="NSColorSpace">3</int>
+												<bytes key="NSWhite">MC43NQA</bytes>
+												<reference key="NSCustomColorSpace" ref="264578591"/>
+											</object>
 											<nil key="IBUIHighlightedColor"/>
 											<int key="IBUIBaselineAdjustment">1</int>
+											<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 											<float key="IBUIMinimumFontSize">10</float>
 											<int key="IBUITextAlignment">1</int>
 										</object>
 									</object>
-									<string key="NSFrame">{{96, 6}, {128, 33}}</string>
+									<string key="NSFrame">{{45, 0}, {230, 44}}</string>
 									<reference key="NSSuperview" ref="733849757"/>
 									<object class="NSColor" key="IBUIBackgroundColor">
-										<int key="NSColorSpace">3</int>
-										<bytes key="NSWhite">MSAwAA</bytes>
-										<reference key="NSCustomColorSpace" ref="264578591"/>
+										<int key="NSColorSpace">1</int>
+										<bytes key="NSRGB">MSAwIDEgMAA</bytes>
 									</object>
 									<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 								</object>
@@ -208,7 +214,9 @@
 					</object>
 					<bool key="IBUIClearsContextBeforeDrawing">NO</bool>
 				</object>
-				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics"/>
+				<object class="IBUISimulatedStatusBarMetrics" key="IBUISimulatedStatusBarMetrics">
+					<int key="IBUIStatusBarStyle">1</int>
+				</object>
 			</object>
 		</object>
 		<object class="IBObjectContainer" key="IBDocument.Objects">
@@ -378,9 +386,9 @@
 						<reference key="object" ref="196689385"/>
 						<object class="NSMutableArray" key="children">
 							<bool key="EncodedWithXMLCoder">YES</bool>
+							<reference ref="619729661"/>
 							<reference ref="524895938"/>
 							<reference ref="351146159"/>
-							<reference ref="619729661"/>
 						</object>
 						<reference key="parent" ref="860153027"/>
 					</object>
@@ -452,7 +460,7 @@
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>iTuneConnectAppDelegate</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-					<string>{{386, 149}, {320, 480}}</string>
+					<string>{{509, 212}, {320, 480}}</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 					<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				</object>

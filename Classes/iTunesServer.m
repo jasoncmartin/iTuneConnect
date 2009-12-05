@@ -365,21 +365,52 @@
 }
 
 #pragma mark -
+#pragma mark Static Methods - Methods that return the same thing every time.
+
+- (void)preload:(SimpleHTTPConnection *)connection withServer:(TuneConnectServer *)server andParameters:(NSDictionary *)params {
+	[server sendDictionary:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:@"libraryReady"] asJSON:AS_JSON];
+}
+
+#pragma mark -
 #pragma mark Private Methods
 
 // TODO: Finish implementation of this.
 
-//- (NSArray *)composeTrackArray:(NSDictionary *)params {
-//	NSArray *parts = [[params valueForKey:@"ofPlaylist"] componentsSeparatedByString:@":"];
-//	
-//	NSMutableArray *tracks = [NSMutableArray array];
-//	
-//	NSString *playlistID = [parts objectAtIndex:0];
-//	NSString *sourceID = [parts objectAtIndex:1];
-//	
-//	NSArray *allTracks = [[[MPMediaQuery playlistsQuery] addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[NSNumber numberWithUnsignedLongLong:[playlistID unsignedLongLongValue]] forProperty:MPMediaPlaylistPropertyPersistentID]] items];
-//	
-//	return nil;
-//}
+- (NSArray *)composeTrackArray:(NSDictionary *)params {
+	NSArray *parts = [[params valueForKey:@"ofPlaylist"] componentsSeparatedByString:@":"];
+	
+	NSMutableArray *tracks = [NSMutableArray array];
+	
+	NSString *playlistID = [parts objectAtIndex:0];
+	NSString *sourceID = [parts objectAtIndex:1];
+	
+	MPMediaQuery *query = [MPMediaQuery playlistsQuery];
+	[query addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[NSNumber numberWithUnsignedLongLong:[playlistID unsignedLongLongValue]] forProperty:MPMediaPlaylistPropertyPersistentID]];
+	
+	NSArray *items = query.items;
+	NSMutableDictionary *track;
+	
+	for(MPMediaItem *item in items) {
+		track = [NSMutableDictionary dictionary];
+		
+		[track setValue:[item title] forKey:@"name"];
+		
+		if([[params valueForKey:@"dehydrated"] boolValue]) {
+			[track setValue:[NSString stringWithFormat:@"%ll:%@:%@", item.persistentID, playlistID, sourceID] forKey:@"ref"];
+		} else {
+			[track setValue:[NSNumber numberWithUnsignedLongLong:item.persistentID] forKey:@"id"];
+			[track setValue:[NSNumber numberWithInt:[playlistID intValue]] forKey:@"playlist"];
+			[track setValue:[NSNumber numberWithInt:[sourceID intValue]] forKey:@"source"];
+			[track setValue:[NSNumber numberWithInt:item.playbackDuration] forKey:@"duration"];
+			[track setValue:item.albumTitle forKey:@"album"];
+			[track setValue:item.artist forKey:@"artist"];
+			[track setValue:@"none" forKey:@"videoType"];
+		}
+		
+		[tracks addObject:track];
+	}
+	
+	return tracks;
+}
 
 @end

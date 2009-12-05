@@ -40,7 +40,7 @@
 	IBOutlet UILabel *artistLabel;
 	IBOutlet UILabel *albumLabel;
 	
-	BOOL inBackground;
+	//BOOL inBackground;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
