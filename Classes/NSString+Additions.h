@@ -30,5 +30,6 @@
 
 - (NSString *)sha1;
 - (NSString *)md5;
+- (unsigned long long)unsignedLongLongValue;
 
 @end

@@ -48,4 +48,8 @@
 	return [[[NSString alloc] initWithData:[NSData dataWithBytes:digest length:CC_MD5_DIGEST_LENGTH] encoding:NSASCIIStringEncoding] autorelease];
 }
 
+- (unsigned long long)unsignedLongLongValue {
+	return strtoull([self UTF8String], NULL, 0);
+}
+
 @end
