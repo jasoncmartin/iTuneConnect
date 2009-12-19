@@ -37,6 +37,10 @@
 	return [self valueForProperty:MPMediaPlaylistPropertySeedItems];
 }
 
+- (NSInteger)attributes {
+	return [[self valueForProperty:MPMediaPlaylistPropertyPlaylistAttributes] intValue];
+}
+
 - (BOOL)isOnTheGo {
 	return [[self valueForProperty:MPMediaPlaylistPropertyPlaylistAttributes] intValue] & MPMediaPlaylistAttributeOnTheGo;
 }

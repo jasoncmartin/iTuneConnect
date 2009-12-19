@@ -16,6 +16,8 @@
 @property (nonatomic, readonly) long long persistentID;
 @property (nonatomic, readonly) NSString *name;
 
+@property (nonatomic, readonly) NSInteger attributes;
+
 @property (nonatomic, readonly) BOOL isOnTheGo;
 @property (nonatomic, readonly) BOOL isGenius;
 @property (nonatomic, readonly) BOOL isSmart;
