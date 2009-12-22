@@ -231,6 +231,7 @@
 						   body:image];
 }
 
+// TODO: Finish implementation
 - (void)hydrate:(SimpleHTTPConnection *)connection withServer:(TuneConnectServer *)server andParameters:(NSDictionary *)params {
 	if(![params hasKey:@"ref"]) {
 		[server sendFourHundred:AS_JSON];

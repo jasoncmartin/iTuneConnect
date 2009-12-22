@@ -73,8 +73,6 @@
 	
 	[server start];
 	
-	//inBackground = NO;
-	
 	[self playingItemChanged:nil];
 }
 

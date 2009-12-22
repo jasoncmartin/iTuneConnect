@@ -34,13 +34,10 @@
 	TuneConnectServer *server;
 	
 	IBOutlet UIImageView *artworkView;
-	//IBOutlet UIView *overlayView;
-	
+
 	IBOutlet UILabel *titleLabel;
 	IBOutlet UILabel *artistLabel;
 	IBOutlet UILabel *albumLabel;
-	
-	//BOOL inBackground;
 }
 
 @property (nonatomic, retain) IBOutlet UIWindow *window;
