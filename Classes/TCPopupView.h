@@ -10,7 +10,9 @@
 
 
 @interface TCPopupView : UIView {
-	UIButton *_closeButton
+	UIButton *_closeButton;
+	
+	UIView *_contentView;
 }
 
 - (void)show;

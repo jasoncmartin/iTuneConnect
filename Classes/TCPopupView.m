@@ -63,14 +63,14 @@ static CGFloat kBorderWidth = 10;
 	[UIView setAnimationDuration:kTransitionDuration/2];
 	[UIView setAnimationDelegate:self];
 	[UIView setAnimationDidStopSelector:@selector(bounce2AnimationStopped)];
-	self.transform = CGAffineTransformScale([self transformForOrientation], 0.9, 0.9);
+	self.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.9, 0.9);
 	[UIView commitAnimations];
 }
 
 - (void)bounce2AnimationStopped {
 	[UIView beginAnimations:nil context:nil];
 	[UIView setAnimationDuration:kTransitionDuration/2];
-	self.transform = [self transformForOrientation];
+	self.transform = CGAffineTransformIdentity;
 	[UIView commitAnimations];
 }
 
@@ -86,7 +86,10 @@ static CGFloat kBorderWidth = 10;
 		self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		self.contentMode = UIViewContentModeRedraw;
 		
-		UIImage* closeImage = [UIImage imageNamed:@"closebox.png"];
+		_contentView = [[UIView alloc] initWithFrame:CGRectZero];
+		[self addSubview:_contentView];
+		
+		UIImage *closeImage = [UIImage imageNamed:@"closebox.png"];
 		_closeButton = [[UIButton buttonWithType:UIButtonTypeCustom] retain];
 		[_closeButton setImage:closeImage forState:UIControlStateNormal];
 		[_closeButton addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
@@ -103,9 +106,11 @@ static CGFloat kBorderWidth = 10;
 	}
 	[window addSubview:self];
 	
+	_contentView.frame = CGRectMake(kBorderWidth, kBorderWidth, [self frame].size.width - kBorderWidth * 2, [self frame].size.height - kBorderWidth * 2);
+	
 	_closeButton.frame = CGRectMake(self.frame.size.width - [_closeButton imageForState:UIControlStateNormal].size.width, 0, [_closeButton imageForState:UIControlStateNormal].size.width, [_closeButton imageForState:UIControlStateNormal].size.height);
 	
-	self.transform = CGAffineTransformScale([self transformForOrientation], 0.001, 0.001);
+	self.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.001, 0.001);
 	[UIView beginAnimations:nil context:nil];
 	[UIView setAnimationDuration:kTransitionDuration/1.5];
 	[UIView setAnimationDelegate:self];
@@ -135,9 +140,9 @@ static CGFloat kBorderWidth = 10;
 
 - (void)addSubview:(UIView *)view {
 	// Modify the view's frame to fit into the space provided.
-	view.frame = CGRectMake([view frame].origin.x + kBorderWidth, [view frame].origin.y + kBorderWidth, [view frame].size.width - kBorderWidth * 2, [view frame].size.height - kBorderWidth * 2);
+	view.frame = CGRectMake([view frame].origin.x, [view frame].origin.y, [view frame].size.width - kBorderWidth * 2, [view frame].size.height - kBorderWidth * 2);
 	
-	[super addSubview:view]
+	[_contentView addSubview:view];
 }
 
 - (void)dealloc {
