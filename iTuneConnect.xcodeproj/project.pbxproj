@@ -15,7 +15,6 @@
 		C313006C109C7E13003097C6 /* NSDictionary+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C313006B109C7E13003097C6 /* NSDictionary+Additions.m */; };
 		C32A79AF10E183D5000E734E /* TCPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = C32A79AE10E183D5000E734E /* TCPopupView.m */; };
 		C32A79D810E18A42000E734E /* closebox.png in Resources */ = {isa = PBXBuildFile; fileRef = C32A79D710E18A42000E734E /* closebox.png */; };
-		C32A7A4D10E1931F000E734E /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C32A7A4B10E1931F000E734E /* DataSource.m */; };
 		C33A76A110B47E8400BFC8BF /* MPMediaItem-Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = C33A76A010B47E8400BFC8BF /* MPMediaItem-Properties.m */; };
 		C34020A4108BA7F400088BEC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C34020A3108BA7F400088BEC /* CFNetwork.framework */; };
 		C34020C0108BA80900088BEC /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = C34020A8108BA80900088BEC /* SBJsonWriter.m */; };
@@ -57,9 +56,6 @@
 		C32A79AD10E183D5000E734E /* TCPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPopupView.h; sourceTree = "<group>"; };
 		C32A79AE10E183D5000E734E /* TCPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPopupView.m; sourceTree = "<group>"; };
 		C32A79D710E18A42000E734E /* closebox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closebox.png; sourceTree = "<group>"; };
-		C32A7A4A10E1931F000E734E /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
-		C32A7A4B10E1931F000E734E /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
-		C32A7A4C10E1931F000E734E /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		C33A769F10B47E8400BFC8BF /* MPMediaItem-Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPMediaItem-Properties.h"; sourceTree = "<group>"; };
 		C33A76A010B47E8400BFC8BF /* MPMediaItem-Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPMediaItem-Properties.m"; sourceTree = "<group>"; };
 		C34020A3108BA7F400088BEC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -128,9 +124,6 @@
 				C3B212B7108BBC5C00B8198C /* Additions */,
 				C34020B5108BA80900088BEC /* HTTP Server */,
 				C34020A7108BA80900088BEC /* JSON */,
-				C32A7A4A10E1931F000E734E /* DataSource.h */,
-				C32A7A4B10E1931F000E734E /* DataSource.m */,
-				C32A7A4C10E1931F000E734E /* SynthesizeSingleton.h */,
 				C34020BE108BA80900088BEC /* Common.h */,
 				C34020BF108BA80900088BEC /* Common.m */,
 				C34020BA108BA80900088BEC /* iTuneConnectAppDelegate.h */,
@@ -332,7 +325,6 @@
 				C33A76A110B47E8400BFC8BF /* MPMediaItem-Properties.m in Sources */,
 				C3BD4CAC10C4ADF1007F3A04 /* MPMediaPlaylist-Properties.m in Sources */,
 				C32A79AF10E183D5000E734E /* TCPopupView.m in Sources */,
-				C32A7A4D10E1931F000E734E /* DataSource.m in Sources */,
 				C364CDB610E2E06B0019FD15 /* UIApplication+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
