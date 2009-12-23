@@ -25,6 +25,8 @@
 
 #import "SettingsViewController.h"
 #import "Common.h"
+#import "TCPopupView.h"
+#import "DataSource.h"
 
 enum SettingsRows {
 	SettingsRowsPasswordOnOff = 0,
@@ -36,16 +38,18 @@ enum SettingsRows {
 
 // Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
 - (void)viewDidLoad {
-    [super viewDidLoad];
-	
 	tv.allowsSelection = NO;
 	[tv setScrollEnabled:NO];
 	
 	activeTextField = nil;
+	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(shownKeyboard:) name:UIKeyboardDidShowNotification object:nil];
+	
+	[super viewDidLoad];
 }
 
 - (IBAction)goBack:(id)sender {
-	[[self navigationController] dismissModalViewControllerAnimated:YES];
+	[[self parentViewController] dismissModalViewControllerAnimated:YES];
 }
 
 
@@ -76,7 +80,7 @@ enum SettingsRows {
 	if (indexPath.section) {
 		[cell.textLabel setText:NSLocalizedString(@"Port", @"Port")];
 		
-		UITextField *portField = [[UITextField alloc] initWithFrame:CGRectMake(91, 9, 210, 27.0)];
+		UITextField *portField = [[UITextField alloc] initWithFrame:CGRectMake(91, 11, 210, 27.0)];
 		[portField setClearButtonMode:UITextFieldViewModeWhileEditing];
 		[portField setText:[[NSUserDefaults standardUserDefaults] stringForKey:NSDefaultPort]];
 		[portField setKeyboardType:UIKeyboardTypeNumberPad];
@@ -122,6 +126,18 @@ enum SettingsRows {
 	return cell;
 }
 
+- (IBAction)showHelp:(id)sender {
+	TCPopupView *popupView = [[TCPopupView alloc] init];
+	
+	UIWebView *webView = [[UIWebView alloc] initWithFrame:CGRectMake(0, 0, 300, 440)];
+	[popupView addSubview:webView];
+	[webView loadHTMLString:NSLocalizedString(@"HelpHTML", @"HelpHTML") baseURL:nil];
+	[webView release];
+	
+	[popupView show];
+	[popupView release];
+}
+
 - (IBAction)saveSetting:(id)sender {
 	if ([activeTextField canResignFirstResponder]) {
 		[activeTextField resignFirstResponder];
@@ -144,7 +160,7 @@ enum SettingsRows {
 				
 				[[NSUserDefaults standardUserDefaults] setBool:NO forKey:NSDefaultPasswordEnabled];
 				
-				[tv deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationBottom];
+				[tv deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
 				
 				[tv endUpdates];
 			}
@@ -212,8 +228,28 @@ enum SettingsRows {
 	// e.g. self.myOutlet = nil;
 }
 
+#pragma mark -
+#pragma mark Notifications
+
+- (void)shownKeyboard:(NSNotification *)note {
+	UIView *keyboard = [[UIApplication sharedApplication] keyboardView];
+	
+	if(!keyboard)
+		return;
+	
+	UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    doneButton.frame = CGRectMake(0, 163, 106, 53);
+    doneButton.adjustsImageWhenHighlighted = NO;
+    [doneButton setImage:[UIImage imageNamed:@"doneup.png"] forState:UIControlStateNormal];
+    [doneButton setImage:[UIImage imageNamed:@"donedown.png"] forState:UIControlStateHighlighted];
+    [doneButton addTarget:self action:@selector(saveSetting:) forControlEvents:UIControlEventTouchUpInside];
+	
+	[keyboard addSubview:doneButton];
+}
 
 - (void)dealloc {
+	[[NSNotificationCenter defaultCenter] removeObserver:self];
+	
     [super dealloc];
 }
 

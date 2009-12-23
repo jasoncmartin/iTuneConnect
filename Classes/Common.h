@@ -28,6 +28,7 @@
 #import "NSObject+Additions.h"
 #import "NSString+Additions.h"
 #import "NSDictionary+Additions.h"
+#import "UIApplication+Additions.h"
 #import "MPMediaItem-Properties.h"
 #import "MPMediaPlaylist-Properties.h"
 #import "SimpleHTTPServer.h"

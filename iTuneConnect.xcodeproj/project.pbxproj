@@ -13,6 +13,9 @@
 		288765FD0DF74451002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765FC0DF74451002DB57D /* CoreGraphics.framework */; };
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		C313006C109C7E13003097C6 /* NSDictionary+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C313006B109C7E13003097C6 /* NSDictionary+Additions.m */; };
+		C32A79AF10E183D5000E734E /* TCPopupView.m in Sources */ = {isa = PBXBuildFile; fileRef = C32A79AE10E183D5000E734E /* TCPopupView.m */; };
+		C32A79D810E18A42000E734E /* closebox.png in Resources */ = {isa = PBXBuildFile; fileRef = C32A79D710E18A42000E734E /* closebox.png */; };
+		C32A7A4D10E1931F000E734E /* DataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = C32A7A4B10E1931F000E734E /* DataSource.m */; };
 		C33A76A110B47E8400BFC8BF /* MPMediaItem-Properties.m in Sources */ = {isa = PBXBuildFile; fileRef = C33A76A010B47E8400BFC8BF /* MPMediaItem-Properties.m */; };
 		C34020A4108BA7F400088BEC /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C34020A3108BA7F400088BEC /* CFNetwork.framework */; };
 		C34020C0108BA80900088BEC /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = C34020A8108BA80900088BEC /* SBJsonWriter.m */; };
@@ -28,6 +31,9 @@
 		C34020CA108BA80900088BEC /* Common.m in Sources */ = {isa = PBXBuildFile; fileRef = C34020BF108BA80900088BEC /* Common.m */; };
 		C3402158108BB69200088BEC /* iTunesServer.m in Sources */ = {isa = PBXBuildFile; fileRef = C3402157108BB69200088BEC /* iTunesServer.m */; };
 		C340215D108BB91F00088BEC /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C340215C108BB91F00088BEC /* MediaPlayer.framework */; };
+		C364CDB610E2E06B0019FD15 /* UIApplication+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C364CDB510E2E06B0019FD15 /* UIApplication+Additions.m */; };
+		C364CDB810E2E1740019FD15 /* doneup.png in Resources */ = {isa = PBXBuildFile; fileRef = C364CDB710E2E1740019FD15 /* doneup.png */; };
+		C364CDBA10E2E1790019FD15 /* donedown.png in Resources */ = {isa = PBXBuildFile; fileRef = C364CDB910E2E1790019FD15 /* donedown.png */; };
 		C36A540E10AE57EF00952CD7 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C36A540D10AE57EF00952CD7 /* SettingsViewController.m */; };
 		C3726F081092038700EE47B9 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3726F061092038700EE47B9 /* SettingsViewController.xib */; };
 		C3B212BB108BBC6800B8198C /* NSObject+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B212BA108BBC6800B8198C /* NSObject+Additions.m */; };
@@ -48,6 +54,12 @@
 		8D1107310486CEB800E47090 /* iTuneConnect-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iTuneConnect-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		C313006A109C7E13003097C6 /* NSDictionary+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+Additions.h"; sourceTree = "<group>"; };
 		C313006B109C7E13003097C6 /* NSDictionary+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+Additions.m"; sourceTree = "<group>"; };
+		C32A79AD10E183D5000E734E /* TCPopupView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCPopupView.h; sourceTree = "<group>"; };
+		C32A79AE10E183D5000E734E /* TCPopupView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCPopupView.m; sourceTree = "<group>"; };
+		C32A79D710E18A42000E734E /* closebox.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closebox.png; sourceTree = "<group>"; };
+		C32A7A4A10E1931F000E734E /* DataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataSource.h; sourceTree = "<group>"; };
+		C32A7A4B10E1931F000E734E /* DataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataSource.m; sourceTree = "<group>"; };
+		C32A7A4C10E1931F000E734E /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		C33A769F10B47E8400BFC8BF /* MPMediaItem-Properties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MPMediaItem-Properties.h"; sourceTree = "<group>"; };
 		C33A76A010B47E8400BFC8BF /* MPMediaItem-Properties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MPMediaItem-Properties.m"; sourceTree = "<group>"; };
 		C34020A3108BA7F400088BEC /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -77,6 +89,10 @@
 		C3402156108BB69200088BEC /* iTunesServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunesServer.h; sourceTree = "<group>"; };
 		C3402157108BB69200088BEC /* iTunesServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesServer.m; sourceTree = "<group>"; };
 		C340215C108BB91F00088BEC /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		C364CDB410E2E06B0019FD15 /* UIApplication+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+Additions.h"; sourceTree = "<group>"; };
+		C364CDB510E2E06B0019FD15 /* UIApplication+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+Additions.m"; sourceTree = "<group>"; };
+		C364CDB710E2E1740019FD15 /* doneup.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doneup.png; sourceTree = "<group>"; };
+		C364CDB910E2E1790019FD15 /* donedown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = donedown.png; sourceTree = "<group>"; };
 		C36A540C10AE57EF00952CD7 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		C36A540D10AE57EF00952CD7 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		C3726F061092038700EE47B9 /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
@@ -112,6 +128,9 @@
 				C3B212B7108BBC5C00B8198C /* Additions */,
 				C34020B5108BA80900088BEC /* HTTP Server */,
 				C34020A7108BA80900088BEC /* JSON */,
+				C32A7A4A10E1931F000E734E /* DataSource.h */,
+				C32A7A4B10E1931F000E734E /* DataSource.m */,
+				C32A7A4C10E1931F000E734E /* SynthesizeSingleton.h */,
 				C34020BE108BA80900088BEC /* Common.h */,
 				C34020BF108BA80900088BEC /* Common.m */,
 				C34020BA108BA80900088BEC /* iTuneConnectAppDelegate.h */,
@@ -122,6 +141,8 @@
 				C3402157108BB69200088BEC /* iTunesServer.m */,
 				C36A540C10AE57EF00952CD7 /* SettingsViewController.h */,
 				C36A540D10AE57EF00952CD7 /* SettingsViewController.m */,
+				C32A79AD10E183D5000E734E /* TCPopupView.h */,
+				C32A79AE10E183D5000E734E /* TCPopupView.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -158,10 +179,13 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				C364CDB910E2E1790019FD15 /* donedown.png */,
+				C364CDB710E2E1740019FD15 /* doneup.png */,
+				C32A79D710E18A42000E734E /* closebox.png */,
 				C3ECC29E108E7B8700B3D23A /* no-art.png */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
-				8D1107310486CEB800E47090 /* iTuneConnect-Info.plist */,
 				C3726F061092038700EE47B9 /* SettingsViewController.xib */,
+				8D1107310486CEB800E47090 /* iTuneConnect-Info.plist */,
 				C3D28F9D10C47F91008546B5 /* Localizable.strings */,
 			);
 			name = Resources;
@@ -223,6 +247,8 @@
 				C33A76A010B47E8400BFC8BF /* MPMediaItem-Properties.m */,
 				C3BD4CAA10C4ADF1007F3A04 /* MPMediaPlaylist-Properties.h */,
 				C3BD4CAB10C4ADF1007F3A04 /* MPMediaPlaylist-Properties.m */,
+				C364CDB410E2E06B0019FD15 /* UIApplication+Additions.h */,
+				C364CDB510E2E06B0019FD15 /* UIApplication+Additions.m */,
 			);
 			name = Additions;
 			sourceTree = "<group>";
@@ -273,6 +299,9 @@
 				C3ECC29F108E7B8700B3D23A /* no-art.png in Resources */,
 				C3726F081092038700EE47B9 /* SettingsViewController.xib in Resources */,
 				C3D28F9E10C47F91008546B5 /* Localizable.strings in Resources */,
+				C32A79D810E18A42000E734E /* closebox.png in Resources */,
+				C364CDB810E2E1740019FD15 /* doneup.png in Resources */,
+				C364CDBA10E2E1790019FD15 /* donedown.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +331,9 @@
 				C36A540E10AE57EF00952CD7 /* SettingsViewController.m in Sources */,
 				C33A76A110B47E8400BFC8BF /* MPMediaItem-Properties.m in Sources */,
 				C3BD4CAC10C4ADF1007F3A04 /* MPMediaPlaylist-Properties.m in Sources */,
+				C32A79AF10E183D5000E734E /* TCPopupView.m in Sources */,
+				C32A7A4D10E1931F000E734E /* DataSource.m in Sources */,
+				C364CDB610E2E06B0019FD15 /* UIApplication+Additions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

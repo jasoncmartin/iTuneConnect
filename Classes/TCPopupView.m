@@ -7,10 +7,12 @@
 //
 
 #import "TCPopupView.h"
+#import "Common.h"
 
 static CGFloat kBorderGray[4] = {0.3, 0.3, 0.3, 0.8};
 static CGFloat kTransitionDuration = 0.3;
 static CGFloat kBorderWidth = 10;
+static CGFloat kPadding = 10;
 
 @implementation TCPopupView
 
@@ -76,6 +78,40 @@ static CGFloat kBorderWidth = 10;
 
 - (void)postDismissCleanup {
 	[self removeFromSuperview];
+	
+	[_window resignKeyWindow];
+	[_window setHidden:YES];
+	[_window release];
+}
+
+- (void)sizeToFitOrientation:(BOOL)transform {
+//	if (transform) {
+//		self.transform = CGAffineTransformIdentity;
+//	}
+	
+	CGRect frame = [UIScreen mainScreen].applicationFrame;
+	CGPoint center = CGPointMake(
+								 frame.origin.x + ceil(frame.size.width/2),
+								 frame.origin.y + ceil(frame.size.height/2));
+	
+	CGFloat width = frame.size.width - kPadding * 2;
+	CGFloat height = frame.size.height - kPadding * 2;
+	
+//	_orientation = [UIApplication sharedApplication].statusBarOrientation;
+	if (UIInterfaceOrientationIsLandscape([UIApplication sharedApplication].statusBarOrientation)) {
+		self.frame = CGRectMake(kPadding, kPadding, height, width);
+	} else {
+		self.frame = CGRectMake(kPadding, kPadding, width, height);
+	}
+	self.center = center;
+	
+//	if (transform) {
+//		self.transform = [self transformForOrientation];
+//	}
+}
+
+- (void)cancel {
+	[self dismiss:YES];
 }
 
 - (id)init {
@@ -100,11 +136,12 @@ static CGFloat kBorderWidth = 10;
 }
 
 - (void)show {
-	UIWindow* window = [UIApplication sharedApplication].keyWindow;
-	if (!window) {
-		window = [[UIApplication sharedApplication].windows objectAtIndex:0];
-	}
-	[window addSubview:self];
+	[self sizeToFitOrientation:NO];
+	
+	_window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+	[_window addSubview:self];
+	[_window setWindowLevel:UIWindowLevelStatusBar + 1.0f];
+	[_window makeKeyAndVisible];
 	
 	_contentView.frame = CGRectMake(kBorderWidth, kBorderWidth, [self frame].size.width - kBorderWidth * 2, [self frame].size.height - kBorderWidth * 2);
 	
@@ -140,12 +177,34 @@ static CGFloat kBorderWidth = 10;
 
 - (void)addSubview:(UIView *)view {
 	// Modify the view's frame to fit into the space provided.
-	view.frame = CGRectMake([view frame].origin.x, [view frame].origin.y, [view frame].size.width - kBorderWidth * 2, [view frame].size.height - kBorderWidth * 2);
+	if(view == _contentView || view == _closeButton) {
+		[super addSubview:view];
+		
+		return;
+	}
+	
+	CGFloat width = [view frame].size.width;
+	CGFloat height = [view frame].size.height;
+	
+	CGRect frame = [UIScreen mainScreen].applicationFrame;
+	
+	if(width > frame.size.width - kBorderWidth * 2) {
+		width = frame.size.width - kBorderWidth * 2;
+	}
+	
+	if(height > frame.size.height - kBorderWidth * 2) {
+		height = frame.size.height - kBorderWidth * 2;
+	}
+	
+	view.frame = CGRectMake([view frame].origin.x, [view frame].origin.y, width - kBorderWidth * 2, height - kBorderWidth * 2);
 	
 	[_contentView addSubview:view];
 }
 
 - (void)dealloc {
+	[_contentView release];
+	_contentView = nil;
+	
 	[_closeButton release];
 	_closeButton = nil;
 	

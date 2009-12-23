@@ -25,7 +25,6 @@
 
 #import <UIKit/UIKit.h>
 
-
 @interface SettingsViewController : UIViewController <UITextFieldDelegate> {
 	IBOutlet UITableView *tv;
 	
@@ -33,5 +32,6 @@
 }
 
 - (IBAction)goBack:(id)sender;
+- (IBAction)showHelp:(id)sender;
 
 @end
