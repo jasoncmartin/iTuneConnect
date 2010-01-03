@@ -212,6 +212,22 @@
 	[server sendDictionary:[NSDictionary dictionaryWithObject:items forKey:@"playlists"] asJSON:AS_JSON];
 }
 
+- (void)getTracks:(SimpleHTTPConnection *)connection withServer:(TuneConnectServer *)server andParameters:(NSDictionary *)params {
+	NSArray *tracks = [self composeTrackArray:params];
+	
+	NSMutableDictionary *response = [NSMutableDictionary dictionaryWithObject:tracks forKey:@"tracks"];
+	
+	if([params boolForKey:@"signature"]) {
+		// TODO: Implement the signature part. We'll need to include CommonCrypto.
+	}
+	
+	if([params hasKey:@"range"]) {
+		NSLog(@"%@", [params valueForKey:@"range"]);
+	}
+	
+	[server sendDictionary:response asJSON:AS_JSON];
+}
+
 - (void)artwork:(SimpleHTTPConnection *)connection withServer:(TuneConnectServer *)server andParameters:(NSDictionary *)params {
 	MPMediaItemArtwork *artwork = [[[MPMusicPlayerController iPodMusicPlayer] nowPlayingItem] valueForProperty:MPMediaItemPropertyArtwork];
 	

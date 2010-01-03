@@ -126,7 +126,7 @@
 							[NSNumber numberWithBool:[[NSUserDefaults standardUserDefaults] boolForKey:NSDefaultPasswordEnabled]], @"requiresPassword",
 							[NSNumber numberWithBool:YES], @"supportsArtwork",
 							[NSArray array], @"extensions", // No extensions because the iPhone can't load extra compiled code.
-							@"iphone", @"serverType",
+							@"iphone", @"serverType", // Possibility of supporting server detection in future?
 							nil
 							  ] asJSON:![[params valueForKey:@"asPlist"] boolValue]];
 		
