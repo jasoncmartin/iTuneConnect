@@ -26,7 +26,7 @@
 #import "SettingsViewController.h"
 #import "Common.h"
 #import "TCPopupView.h"
-#import "DataSource.h"
+
 
 enum SettingsRows {
 	SettingsRowsPasswordOnOff = 0,

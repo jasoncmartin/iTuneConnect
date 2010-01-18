@@ -217,7 +217,7 @@
 	
 	NSMutableDictionary *response = [NSMutableDictionary dictionaryWithObject:tracks forKey:@"tracks"];
 	
-	if([params boolForKey:@"signature"]) {
+	if([params valueForKey:@"signature"]) {
 		// TODO: Implement the signature part. We'll need to include CommonCrypto.
 	}
 	
@@ -278,7 +278,22 @@
 		
 		return;
 	} else if([refParts count] == 3) {
-		
+		//MPMediaQuery *query = [MPMediaQuery songsQuery];
+//		
+//		[query addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[refParts objectAtIndex:0] forProperty:MPMediaItemPropertyPersistentID]];
+//		
+//		MPMediaItem *item = [[query items] objectAtIndex:0];
+//		
+//		NSMutableDictionary *song = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+//									 item.title, @"name",
+//									 [NSNumber numberWithInt:item.persistentID], @"id",
+//									 [refParts objectAtIndex:1], @"playlist",
+//									 [refParts objectAtIndex:2], @"source",
+//									 [NSNumber numberWithInt:item.duration], @"duration",
+//									 
+//									 ];
+//		
+//		return;
 	}
 	
 	[server sendFourHundred:AS_JSON];
