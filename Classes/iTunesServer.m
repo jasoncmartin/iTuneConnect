@@ -30,6 +30,13 @@
 #import "TuneConnectServer.h"
 #import "Common.h"
 
+@interface iTunesServer (PrivateMethods)
+
+- (NSArray *)composeTrackArray:(NSDictionary *)params;
+
+@end
+
+
 @implementation iTunesServer
 
 #pragma mark -
@@ -91,16 +98,16 @@
 		[dictionary setValue:[item valueForProperty:MPMediaItemPropertyPlaybackDuration] forKey:@"duration"];
 		
 		if([[params valueForKey:@"genre"] boolValue])
-			[dictionary setValue:[item valueForProperty:MPMediaItemPropertyGenre] forKey:@"genre"];
+			[dictionary setValue:item.genre forKey:@"genre"];
 		
 		if([[params valueForKey:@"rating"] boolValue])
-			[dictionary setValue:[item valueForProperty:MPMediaItemPropertyRating] forKey:@"rating"];
+			[dictionary setValue:[NSNumber numberWithInt:item.rating] forKey:@"rating"];
 		
 		if([[params valueForKey:@"composer"] boolValue])
-			[dictionary setValue:[item valueForProperty:MPMediaItemPropertyComposer] forKey:@"composer"];
+			[dictionary setValue:item.composer forKey:@"composer"];
 		
 		if([[params valueForKey:@"playCount"] boolValue])
-			[dictionary setValue:[item valueForProperty:MPMediaItemPropertyPlayCount] forKey:@"playCount"];
+			[dictionary setValue:[NSNumber numberWithInt:item.playCount] forKey:@"playCount"];
 	}
 	
 	[server sendDictionary:dictionary asJSON:AS_JSON];
@@ -409,7 +416,7 @@
 // TODO: Finish implementation of this.
 
 - (NSArray *)composeTrackArray:(NSDictionary *)params {
-	NSArray *parts = [[params valueForKey:@"ofPlaylist"] componentsSeparatedByString:@":"];
+	NSArray *parts = [[[params valueForKey:@"ofPlaylist"] stringByReplacingOccurrencesOfString:@"%3A" withString:@":"] componentsSeparatedByString:@":"];
 	
 	NSMutableArray *tracks = [NSMutableArray array];
 	
@@ -438,6 +445,42 @@
 			[track setValue:item.artist forKey:@"artist"];
 			[track setValue:@"none" forKey:@"videoType"];
 		}
+		
+		if([[params valueForKey:@"genres"] boolValue]) {
+			[track setValue:item.genre forKey:@"genre"];
+		}
+		
+		if([[params valueForKey:@"ratings"] boolValue]) {
+			[track setValue:[NSNumber numberWithInt:item.rating] forKey:@"rating"];
+		}
+		
+		if([[params valueForKey:@"compoers"] boolValue]) {
+			[track setValue:item.composer forKey:@"composer"];
+		}
+		
+		// Comments, Date Added, Bitrate, and Samplerate are currently not supported. But we have to provide something, otherwise the client will crash :(
+		
+		if([[params valueForKey:@"comments"] boolValue]) {
+			[track setValue:[NSString string] forKey:@"comments"];
+		}
+		
+		if([[params valueForKey:@"datesAdded"] boolValue]) {
+			NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+			formatter.dateFormat = @"yyyy-mm-ddThh:mm:ssZ";
+			
+			[track setValue:[formatter stringFromDate:[NSDate date]] forKey:@"datesAdded"];
+			[formatter release];
+		}
+		
+//		if([[params valueForKey:@"genres"] boolValue]) {
+//			[track setValue:item.genre forKey:@"genres"];
+//		}
+		
+		if([[params valueForKey:@"playCounts"] boolValue]) {
+			[track setValue:[NSNumber numberWithInt:item.playCount] forKey:@"playCount"];
+		}
+		
+		// TODO: Add in filtering in the future.
 		
 		[tracks addObject:track];
 	}
