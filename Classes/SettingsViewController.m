@@ -81,7 +81,7 @@ enum SettingsRows {
 		[cell.textLabel setText:NSLocalizedString(@"Port", @"Port")];
 		
 		UITextField *portField = [[UITextField alloc] initWithFrame:CGRectMake(91, 11, 210, 27.0)];
-		[portField setClearButtonMode:UITextFieldViewModeWhileEditing];
+		[portField setClearButtonMode:UITextFieldViewModeNever];
 		[portField setText:[[NSUserDefaults standardUserDefaults] stringForKey:NSDefaultPort]];
 		[portField setKeyboardType:UIKeyboardTypeNumberPad];
 		[portField setTextAlignment:UITextAlignmentRight];
@@ -111,6 +111,7 @@ enum SettingsRows {
 			UITextField *portField = [[UITextField alloc] initWithFrame:CGRectMake(91, 9.0, 210, 27.0)];
 			[portField setClearButtonMode:UITextFieldViewModeWhileEditing];
 			[portField setText:[[NSUserDefaults standardUserDefaults] stringForKey:NSDefaultPassword]];
+			[portField setReturnKeyType:UIReturnKeyDone];
 			[portField setTextAlignment:UITextAlignmentRight];
 			[portField setSecureTextEntry:YES];
 			[portField setTag:SettingsRowsPasswordEntry];
@@ -235,6 +236,9 @@ enum SettingsRows {
 	UIView *keyboard = [[UIApplication sharedApplication] keyboardView];
 	
 	if(!keyboard)
+		return;
+	
+	if([activeTextField keyboardType] != UIKeyboardTypeNumberPad)
 		return;
 	
 	UIButton *doneButton = [UIButton buttonWithType:UIButtonTypeCustom];
