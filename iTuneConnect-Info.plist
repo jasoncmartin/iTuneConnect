@@ -28,5 +28,7 @@
 	<string>MainWindow</string>
 	<key>UIRequiresPersistentWiFi</key>
 	<true/>
+	<key>UIStatusBarStyle</key>
+	<string>UIStatusBarStyleBlackTranslucent</string>
 </dict>
 </plist>
