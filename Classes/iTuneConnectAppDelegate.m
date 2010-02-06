@@ -78,8 +78,6 @@
 
 - (void)registerNotifications {
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingItemChanged:) name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification object:nil];
-	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(playingItemChanged:) name:UIApplicationBackgroundingNotification object:nil];
 }
 
 - (void)playingItemChanged:(id)unused {

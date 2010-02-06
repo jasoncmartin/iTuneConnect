@@ -24,16 +24,6 @@
 //
 
 #import "Common.h"
-#import <objc/runtime.h>
-
-NSString *UIApplicationBackgroundingNotification = @"UIApplicationBackgroundingNotification";
-
-// Thanks, three20!
-void TTSwapMethods(Class cls, SEL originalSel, SEL newSel) {
-	Method originalMethod = class_getInstanceMethod(cls, originalSel);
-	Method newMethod = class_getInstanceMethod(cls, newSel);
-	method_exchangeImplementations(originalMethod, newMethod);
-}
 
 @implementation Common
 

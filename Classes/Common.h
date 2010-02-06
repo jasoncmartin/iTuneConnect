@@ -41,10 +41,6 @@
 #define NSDefaultUseLibraryFile	   @"useLibraryFile"
 #define NSDefaultDsThreshold	   @"dsThreshold"
 
-void TTSwapMethods(Class cls, SEL originalSel, SEL newSel);
-
-extern NSString *UIApplicationBackgroundingNotification;
-
 @interface Common : NSObject {
 
 }
