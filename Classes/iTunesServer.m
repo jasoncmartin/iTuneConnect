@@ -25,6 +25,7 @@
 
 #import <MediaPlayer/MediaPlayer.h>
 #import <AudioToolbox/AudioToolbox.h>
+#import <CommonCrypto/CommonDigest.h>
 
 #import "iTunesServer.h"
 #import "TuneConnectServer.h"
@@ -33,6 +34,7 @@
 @interface iTunesServer (PrivateMethods)
 
 - (NSArray *)composeTrackArray:(NSDictionary *)params;
+- (NSString *)createPlaylistSignature:(NSArray *)tracks;
 
 @end
 
@@ -70,16 +72,16 @@
 		[dictionary setValue:[item valueForProperty:MPMediaItemPropertyPlaybackDuration] forKey:@"duration"];
 		
 		if([[params valueForKey:@"genre"] boolValue])
-			[dictionary setValue:[item valueForProperty:MPMediaItemPropertyGenre] forKey:@"genre"];
+			[dictionary setValue:item.genre forKey:@"genre"];
 		
 		if([[params valueForKey:@"rating"] boolValue])
-			[dictionary setValue:[item valueForProperty:MPMediaItemPropertyRating] forKey:@"rating"];
+			[dictionary setValue:[NSString stringWithFormat:@"%i", item.rating] forKey:@"rating"];
 		
 		if([[params valueForKey:@"composer"] boolValue])
-			[dictionary setValue:[item valueForProperty:MPMediaItemPropertyComposer] forKey:@"composer"];
+			[dictionary setValue:item.composer forKey:@"composer"];
 		
 		if([[params valueForKey:@"playCount"] boolValue])
-			[dictionary setValue:[item valueForProperty:MPMediaItemPropertyPlayCount] forKey:@"playCount"];
+			[dictionary setValue:[NSString stringWithFormat:@"%i", item.playCount] forKey:@"playCount"];
 	}
 	
 	[server sendDictionary:dictionary asJSON:AS_JSON];
@@ -154,7 +156,7 @@
 		repeat = @"repeat-all";
 	}
 	
-	[server sendDictionary:[NSDictionary dictionaryWithObjectsAndKeys:repeat, @"repeat", [NSNumber numberWithBool:([[MPMusicPlayerController iPodMusicPlayer] shuffleMode] == MPMusicShuffleModeSongs || [[MPMusicPlayerController iPodMusicPlayer] shuffleMode] == MPMusicShuffleModeAlbums)], nil] asJSON:AS_JSON];
+	[server sendDictionary:[NSDictionary dictionaryWithObjectsAndKeys:repeat, @"repeat", [NSNumber numberWithBool:([[MPMusicPlayerController iPodMusicPlayer] shuffleMode] == MPMusicShuffleModeSongs || [[MPMusicPlayerController iPodMusicPlayer] shuffleMode] == MPMusicShuffleModeAlbums)], @"shuffle", nil] asJSON:AS_JSON];
 }
 
 - (void)setPlaySettings:(SimpleHTTPConnection *)connection withServer:(TuneConnectServer *)server andParameters:(NSDictionary *)params {
@@ -224,8 +226,10 @@
 	
 	NSMutableDictionary *response = [NSMutableDictionary dictionaryWithObject:tracks forKey:@"tracks"];
 	
-	if([params valueForKey:@"signature"]) {
+	if([[params valueForKey:@"signature"] boolValue]) {
 		// TODO: Implement the signature part. We'll need to include CommonCrypto.
+		NSLog(@"Looking for a signature...");
+		[response setValue:[self createPlaylistSignature:tracks] forKey:@"signature"];
 	}
 	
 	if([params hasKey:@"range"]) {
@@ -363,7 +367,7 @@
 	float volume = [[MPMusicPlayerController iPodMusicPlayer] volume] + .1;
 	
 	if(volume > 1.0)
-		volume == 1.0;
+		volume = 1.0;
 	
 	[[MPMusicPlayerController iPodMusicPlayer] setVolume:volume];
 	
@@ -374,7 +378,7 @@
 	float volume = [[MPMusicPlayerController iPodMusicPlayer] volume] - .1;
 	
 	if(volume < 0.0)
-		volume == 0.0;
+		volume = 0.0;
 	
 	[[MPMusicPlayerController iPodMusicPlayer] setVolume:volume];
 	
@@ -451,7 +455,7 @@
 		}
 		
 		if([[params valueForKey:@"ratings"] boolValue]) {
-			[track setValue:[NSNumber numberWithInt:item.rating] forKey:@"rating"];
+			[track setValue:[NSString stringWithFormat:@"%i", item.rating] forKey:@"rating"];
 		}
 		
 		if([[params valueForKey:@"compoers"] boolValue]) {
@@ -477,7 +481,7 @@
 //		}
 		
 		if([[params valueForKey:@"playCounts"] boolValue]) {
-			[track setValue:[NSNumber numberWithInt:item.playCount] forKey:@"playCount"];
+			[track setValue:[NSString stringWithFormat:@"%i", item.playCount] forKey:@"playCount"];
 		}
 		
 		// TODO: Add in filtering in the future.
@@ -486,6 +490,19 @@
 	}
 	
 	return tracks;
+}
+
+- (NSString *)createPlaylistSignature:(NSArray *)tracks {
+	NSData *json = [[tracks JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding];
+	
+	unsigned char result[CC_MD5_DIGEST_LENGTH];
+	CC_MD5([json bytes], [json length], result);
+	
+	return [NSString stringWithFormat:
+			@"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
+			result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7],
+			result[8], result[9], result[10], result[11], result[12], result[13], result[14], result[15]
+			];
 }
 
 @end
