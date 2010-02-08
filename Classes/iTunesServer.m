@@ -227,7 +227,6 @@
 	NSMutableDictionary *response = [NSMutableDictionary dictionaryWithObject:tracks forKey:@"tracks"];
 	
 	if([[params valueForKey:@"signature"] boolValue]) {
-		// TODO: Implement the signature part. We'll need to include CommonCrypto.
 		NSLog(@"Looking for a signature...");
 		[response setValue:[self createPlaylistSignature:tracks] forKey:@"signature"];
 	}
@@ -308,6 +307,10 @@
 	}
 	
 	[server sendFourHundred:AS_JSON];
+}
+
+- (void)signature:(SimpleHTTPConnection *)connection withServer:(TuneConnectServer *)server andParameters:(NSDictionary *)params {
+	
 }
 
 #pragma mark -
