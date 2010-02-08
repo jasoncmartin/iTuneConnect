@@ -31,21 +31,30 @@
 - (NSString *)sha1 {
 	NSData *keyData = [self dataUsingEncoding:NSASCIIStringEncoding];
 	
-	uint8_t digest[CC_SHA1_DIGEST_LENGTH] = {0};
+	uint8_t result[CC_SHA1_DIGEST_LENGTH] = {0};
 	
-	CC_SHA1(keyData.bytes, keyData.length, digest);
+	CC_SHA1(keyData.bytes, keyData.length, result);
 	
-	return [[[NSString alloc] initWithData:[NSData dataWithBytes:digest length:CC_SHA1_DIGEST_LENGTH] encoding:NSASCIIStringEncoding] autorelease];
+	return [NSString stringWithFormat:
+			@"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
+			result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7],
+			result[8], result[9], result[10], result[11], result[12], result[13], result[14], result[15],
+			result[16], result[17], result[18], result[19]
+			];
 }
 
 - (NSString *)md5 {
 	NSData *keyData = [self dataUsingEncoding:NSASCIIStringEncoding];
 	
-	uint8_t digest[CC_MD5_DIGEST_LENGTH];
+	uint8_t result[CC_MD5_DIGEST_LENGTH];
 	
-	CC_MD5([keyData bytes], [keyData length], digest);
+	CC_MD5([keyData bytes], [keyData length], result);
 	
-	return [[[NSString alloc] initWithData:[NSData dataWithBytes:digest length:CC_MD5_DIGEST_LENGTH] encoding:NSASCIIStringEncoding] autorelease];
+	return [NSString stringWithFormat:
+			@"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
+			result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7],
+			result[8], result[9], result[10], result[11], result[12], result[13], result[14], result[15]
+			];
 }
 
 - (unsigned long long)unsignedLongLongValue {

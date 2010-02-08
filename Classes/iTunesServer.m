@@ -202,17 +202,17 @@
 	for(MPMediaPlaylist *item in result) {
 		if([[params valueForKey:@"dehydrated"] boolValue]) {
 			[items addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-							  [item valueForProperty:MPMediaPlaylistPropertyName], @"name",
-							  [NSString stringWithFormat:@"%@:%@", [item valueForProperty:MPMediaPlaylistPropertyPersistentID], [params valueForKey:@"ofSource"]], @"ref",
+							  item.name, @"name",
+							  [NSString stringWithFormat:@"%@:%@", [NSNumber numberWithLongLong:item.persistentID], [params valueForKey:@"ofSource"]], @"ref",
 							  nil
 							  ]];
 		} else {
 			[items addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-							  [item valueForProperty:MPMediaPlaylistPropertyPersistentID], @"id",
-							  [item valueForProperty:MPMediaPlaylistPropertyName], @"name",
+							  [NSNumber numberWithLongLong:item.persistentID], @"id",
+							  item.name, @"name",
 							  [params valueForKey:@"ofSource"], @"source",
 							  [NSNumber numberWithUnsignedInt:[item count]], @"trackCount",
-							  [NSNumber numberWithBool:[[item valueForProperty:MPMediaPlaylistPropertyPlaylistAttributes] intValue] & MPMediaPlaylistAttributeSmart], @"isSmart",
+							  [NSNumber numberWithBool:item.isSmart], @"isSmart",
 							  nil
 							]];
 		}
@@ -222,6 +222,8 @@
 }
 
 - (void)getTracks:(SimpleHTTPConnection *)connection withServer:(TuneConnectServer *)server andParameters:(NSDictionary *)params {
+	NSLog(@"Of Playlist: %@", [params valueForKey:@"ofPlaylist"]);
+	
 	NSArray *tracks = [self composeTrackArray:params];
 	
 	NSMutableDictionary *response = [NSMutableDictionary dictionaryWithObject:tracks forKey:@"tracks"];
@@ -496,16 +498,7 @@
 }
 
 - (NSString *)createPlaylistSignature:(NSArray *)tracks {
-	NSData *json = [[tracks JSONRepresentation] dataUsingEncoding:NSUTF8StringEncoding];
-	
-	unsigned char result[CC_MD5_DIGEST_LENGTH];
-	CC_MD5([json bytes], [json length], result);
-	
-	return [NSString stringWithFormat:
-			@"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x",
-			result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7],
-			result[8], result[9], result[10], result[11], result[12], result[13], result[14], result[15]
-			];
+	return [[tracks JSONRepresentation] md5];
 }
 
 @end

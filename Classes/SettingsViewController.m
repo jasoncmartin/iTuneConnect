@@ -176,7 +176,7 @@ enum SettingsRows {
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
 	if([textField tag] == SettingsRowsPasswordEntry) {
-		[[NSUserDefaults standardUserDefaults] setValue:[textField text] forKey:NSDefaultPassword];
+		[[NSUserDefaults standardUserDefaults] setValue:[textField text]  forKey:NSDefaultPassword];
 	} else {
 		[[NSUserDefaults standardUserDefaults] setValue:[textField text] forKey:NSDefaultPort];
 	}

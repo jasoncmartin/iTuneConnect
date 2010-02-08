@@ -131,7 +131,25 @@
 							  ] asJSON:![[params valueForKey:@"asPlist"] boolValue]];
 		
 		return;
-	} else if([itunes respondsToSelector:[self _convertToSelector:path]]) {
+	} else if ([path isEqualToString:@"getAuthKey"]) {
+		if(![params hasKey:@"password"]) {
+			[self sendFourOhFour:![[params valueForKey:@"asPlist"] boolValue]];
+		}
+		
+		NSLog(@"%@ %@", [params valueForKey:@"password"], [[[NSUserDefaults standardUserDefaults] valueForKey:NSDefaultPassword] sha1]);
+		
+		// TODO: Move Password storage to the keychain sometime in the future.
+		if([[params valueForKey:@"password"] isEqualToString:[[[NSUserDefaults standardUserDefaults] valueForKey:NSDefaultPassword] sha1]]) {
+			NSString *passcode = [[NSString stringWithFormat:@"%@%@", [[[NSUserDefaults standardUserDefaults] stringForKey:NSDefaultPassword] sha1], [connection address]] sha1];
+			
+			[self sendDictionary:[NSDictionary dictionaryWithObject:passcode forKey:@"authKey"] asJSON:![[params valueForKey:@"asPlist"] boolValue]];
+		} else {
+			[self sendDictionary:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:@"authKey"] asJSON:![[params valueForKey:@"asPlist"] boolValue]];
+		}
+		
+		
+		return;
+	} else if ([itunes respondsToSelector:[self _convertToSelector:path]]) {
 		if([[NSUserDefaults standardUserDefaults] boolForKey:NSDefaultPasswordEnabled]) {
 			if(![self _authorizationValid:connection withParams:params]) {
 				[self sendFourOhThree:![[params valueForKey:@"asPlist"] boolValue]];
@@ -144,6 +162,8 @@
 		
 		return;
 	}
+	
+	NSLog(@"Got 404 with path: %@", path);
 	
 	[self sendFourOhFour:![[params valueForKey:@"asPlist"] boolValue]];
 }
@@ -185,7 +205,7 @@
 }
 
 - (BOOL)_authorizationValid:(SimpleHTTPConnection *)connection withParams:(NSDictionary *)params {
-	NSString *passcode = [[NSString stringWithFormat:@"%@%@", [[NSUserDefaults standardUserDefaults] stringForKey:NSDefaultPassword], [connection address]] sha1];
+	NSString *passcode = [[NSString stringWithFormat:@"%@%@", [[[NSUserDefaults standardUserDefaults] stringForKey:NSDefaultPassword] sha1], [connection address]] sha1];
 	
 	return ([[params valueForKey:@"authKey"] isEqualToString:passcode]);
 }
