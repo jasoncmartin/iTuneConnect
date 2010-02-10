@@ -36,7 +36,7 @@
 
 - (long long) persistentID
 {
-	return [[self valueForProperty:MPMediaItemPropertyPersistentID] longLongValue];
+	return [[self valueForProperty:MPMediaItemPropertyPersistentID] unsignedLongLongValue];
 }
 
 - (NSInteger) mediaType

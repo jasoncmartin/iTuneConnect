@@ -8,7 +8,7 @@
 
 
 @interface MPMediaItem (Properties)
-@property (nonatomic, readonly) long long persistentID;
+@property (nonatomic, readonly) unsigned long long persistentID;
 
 @property (nonatomic, readonly) NSInteger mediaType;
 
