@@ -203,12 +203,12 @@
 		if([[params valueForKey:@"dehydrated"] boolValue]) {
 			[items addObject:[NSDictionary dictionaryWithObjectsAndKeys:
 							  item.name, @"name",
-							  [NSString stringWithFormat:@"%@:%@", [NSNumber numberWithLongLong:item.persistentID], [params valueForKey:@"ofSource"]], @"ref",
+							  [NSString stringWithFormat:@"%@:%@", [NSNumber numberWithUnsignedLongLong:item.persistentID], [params valueForKey:@"ofSource"]], @"ref",
 							  nil
 							  ]];
 		} else {
 			[items addObject:[NSDictionary dictionaryWithObjectsAndKeys:
-							  [NSNumber numberWithLongLong:item.persistentID], @"id",
+							  [NSNumber numberWithUnsignedLongLong:item.persistentID], @"id",
 							  item.name, @"name",
 							  [params valueForKey:@"ofSource"], @"source",
 							  [NSNumber numberWithUnsignedInt:[item count]], @"trackCount",
@@ -217,6 +217,8 @@
 							]];
 		}
 	}
+	
+	NSLog(@"Sent Playlists: %@", items);
 	
 	[server sendDictionary:[NSDictionary dictionaryWithObject:items forKey:@"playlists"] asJSON:AS_JSON];
 }
@@ -308,15 +310,15 @@
 									 nil
 									 ];
 		
-		if([[params valueForKey:@"genres"] boolValue]) {
+		if([[params valueForKey:@"genre"] boolValue]) {
 			[song setValue:item.genre forKey:@"genre"];
 		}
 		
-		if([[params valueForKey:@"ratings"] boolValue]) {
+		if([[params valueForKey:@"rating"] boolValue]) {
 			[song setValue:[NSString stringWithFormat:@"%i", item.rating] forKey:@"rating"];
 		}
 		
-		if([[params valueForKey:@"compoers"] boolValue]) {
+		if([[params valueForKey:@"composer"] boolValue]) {
 			[song setValue:item.composer forKey:@"composer"];
 		}
 		
@@ -334,12 +336,16 @@
 			[formatter release];
 		}
 		
-		//		if([[params valueForKey:@"genres"] boolValue]) {
-		//			[track setValue:item.genre forKey:@"genres"];
-		//		}
+		if([[params valueForKey:@"bitrate"] boolValue]) {
+			[song setValue:[NSNumber numberWithInt:160] forKey:@"bitrate"];
+		}
+		
+		if([[params valueForKey:@"sampleRate"] boolValue]) {
+			[song setValue:[NSNumber numberWithInt:44100] forKey:@"sampleRate"];
+		}
 		
 		if([[params valueForKey:@"playCounts"] boolValue]) {
-			[song setValue:[NSString stringWithFormat:@"%i", item.playCount] forKey:@"playCount"];
+			[song setValue:[NSNumber numberWithInt:item.playCount] forKey:@"playCount"];
 		}
 		
 		[server sendDictionary:song asJSON:AS_JSON];
@@ -429,6 +435,55 @@
 	[server sendSuccess:AS_JSON];
 }
 
+- (void)playPlaylist:(SimpleHTTPConnection *)connection withServer:(TuneConnectServer *)server andParameters:(NSDictionary *)params {
+	if(![[params valueForKey:@"playlist"] boolValue]) {
+		[server sendFourHundred:AS_JSON];
+		
+		return;
+	}
+	
+	NSArray *parts = [[[params valueForKey:@"playlist"] stringByReplacingOccurrencesOfString:@"%3A" withString:@":"] componentsSeparatedByString:@":"];
+	
+	NSString *playlistID = [parts objectAtIndex:0];
+	
+	MPMediaQuery *query = [MPMediaQuery playlistsQuery];
+	[query addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[NSNumber numberWithUnsignedLongLong:[playlistID unsignedLongLongValue]] forProperty:MPMediaPlaylistPropertyPersistentID]];
+	
+	if([[query collections] count] > 0) {
+		MPMediaPlaylist *playlist = [[query collections] objectAtIndex:0];
+		[[MPMusicPlayerController iPodMusicPlayer] setQueueWithItemCollection:playlist];
+		[[MPMusicPlayerController iPodMusicPlayer] play];
+	} else {
+		[server sendFailure:AS_JSON];
+	}
+	
+	[server sendSuccess:AS_JSON];
+}
+
+- (void)playTrack:(SimpleHTTPConnection *)connection withServer:(TuneConnectServer *)server andParameters:(NSDictionary *)params {
+	if(![[params valueForKey:@"track"] boolValue]) {
+		[server sendFourHundred:AS_JSON];
+		
+		return;
+	}
+	
+	NSArray *parts = [[[params valueForKey:@"track"] stringByReplacingOccurrencesOfString:@"%3A" withString:@":"] componentsSeparatedByString:@":"];
+	
+	NSString *songID = [parts objectAtIndex:0];
+	
+	MPMediaQuery *query = [MPMediaQuery songsQuery];
+	[query addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[NSNumber numberWithUnsignedLongLong:[songID unsignedLongLongValue]] forProperty:MPMediaItemPropertyPersistentID]];
+	
+	if([[query items] count] > 0) {
+		MPMediaItem *song = [[query items] objectAtIndex:0];
+		[[MPMusicPlayerController iPodMusicPlayer] setNowPlayingItem:song];
+	} else {
+		[server sendFailure:AS_JSON];
+	}
+	
+	[server sendSuccess:AS_JSON];
+}
+
 #pragma mark -
 #pragma mark Visualizations
 
@@ -502,7 +557,7 @@
 			[track setValue:[NSString stringWithFormat:@"%i", item.rating] forKey:@"rating"];
 		}
 		
-		if([[params valueForKey:@"compoers"] boolValue]) {
+		if([[params valueForKey:@"composers"] boolValue]) {
 			[track setValue:item.composer forKey:@"composer"];
 		}
 		
@@ -520,12 +575,16 @@
 			[formatter release];
 		}
 		
-//		if([[params valueForKey:@"genres"] boolValue]) {
-//			[track setValue:item.genre forKey:@"genres"];
-//		}
+		if([[params valueForKey:@"bitrate"] boolValue]) {
+			[track setValue:[NSNumber numberWithInt:160] forKey:@"bitrate"];
+		}
+		
+		if([[params valueForKey:@"sampleRate"] boolValue]) {
+			[track setValue:[NSNumber numberWithInt:44100] forKey:@"sampleRate"];
+		}
 		
 		if([[params valueForKey:@"playCounts"] boolValue]) {
-			[track setValue:[NSString stringWithFormat:@"%i", item.playCount] forKey:@"playCount"];
+			[track setValue:[NSNumber numberWithInt:item.playCount] forKey:@"playCount"];
 		}
 		
 		// TODO: Add in filtering in the future.
