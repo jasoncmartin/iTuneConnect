@@ -290,29 +290,68 @@
 		
 		return;
 	} else if([refParts count] == 3) {
-		//MPMediaQuery *query = [MPMediaQuery songsQuery];
-//		
-//		[query addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[refParts objectAtIndex:0] forProperty:MPMediaItemPropertyPersistentID]];
-//		
-//		MPMediaItem *item = [[query items] objectAtIndex:0];
-//		
-//		NSMutableDictionary *song = [NSMutableDictionary dictionaryWithObjectsAndKeys:
-//									 item.title, @"name",
-//									 [NSNumber numberWithInt:item.persistentID], @"id",
-//									 [refParts objectAtIndex:1], @"playlist",
-//									 [refParts objectAtIndex:2], @"source",
-//									 [NSNumber numberWithInt:item.duration], @"duration",
-//									 
-//									 ];
-//		
-//		return;
+		MPMediaQuery *query = [MPMediaQuery songsQuery];
+		
+		[query addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[refParts objectAtIndex:0] forProperty:MPMediaItemPropertyPersistentID]];
+		
+		MPMediaItem *item = [[query items] objectAtIndex:0];
+		
+		NSMutableDictionary *song = [NSMutableDictionary dictionaryWithObjectsAndKeys:
+									 item.title, @"name",
+									 [NSNumber numberWithInt:item.persistentID], @"id",
+									 [refParts objectAtIndex:1], @"playlist",
+									 [refParts objectAtIndex:2], @"source",
+									 [NSNumber numberWithInt:item.playbackDuration], @"duration",
+									 item.albumTitle, @"album",
+									 item.artist, @"artist",
+									 @"none", @"videoType",
+									 nil
+									 ];
+		
+		if([[params valueForKey:@"genres"] boolValue]) {
+			[song setValue:item.genre forKey:@"genre"];
+		}
+		
+		if([[params valueForKey:@"ratings"] boolValue]) {
+			[song setValue:[NSString stringWithFormat:@"%i", item.rating] forKey:@"rating"];
+		}
+		
+		if([[params valueForKey:@"compoers"] boolValue]) {
+			[song setValue:item.composer forKey:@"composer"];
+		}
+		
+		// Comments, Date Added, Bitrate, and Samplerate are currently not supported. But we have to provide something, otherwise the client will crash :(
+		
+		if([[params valueForKey:@"comments"] boolValue]) {
+			[song setValue:[NSString string] forKey:@"comments"];
+		}
+		
+		if([[params valueForKey:@"datesAdded"] boolValue]) {
+			NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+			formatter.dateFormat = @"yyyy-mm-ddThh:mm:ssZ";
+			
+			[song setValue:[formatter stringFromDate:[NSDate date]] forKey:@"datesAdded"];
+			[formatter release];
+		}
+		
+		//		if([[params valueForKey:@"genres"] boolValue]) {
+		//			[track setValue:item.genre forKey:@"genres"];
+		//		}
+		
+		if([[params valueForKey:@"playCounts"] boolValue]) {
+			[song setValue:[NSString stringWithFormat:@"%i", item.playCount] forKey:@"playCount"];
+		}
+		
+		[server sendDictionary:song asJSON:AS_JSON];
+		
+		return;
 	}
 	
 	[server sendFourHundred:AS_JSON];
 }
 
 - (void)signature:(SimpleHTTPConnection *)connection withServer:(TuneConnectServer *)server andParameters:(NSDictionary *)params {
-	
+	NSLog(@"Params: %@", params);
 }
 
 #pragma mark -
