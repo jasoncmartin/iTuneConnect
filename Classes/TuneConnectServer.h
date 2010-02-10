@@ -47,6 +47,7 @@
 - (void)stop;
 
 - (void)sendSuccess:(BOOL)asJson;
+- (void)sendFailure:(BOOL)asJson;
 - (void)sendFourHundred:(BOOL)asJson;
 - (void)sendFourOhFour:(BOOL)asJson;
 - (void)sendFourOhThree:(BOOL)asJson;

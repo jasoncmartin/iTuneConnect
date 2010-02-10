@@ -172,6 +172,10 @@
 	[self sendDictionary:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:@"success"] asJSON:asJson withCode:200];
 }
 
+- (void)sendFailure:(BOOL)asJson {
+	[self sendDictionary:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:NO] forKey:@"success"] asJSON:asJson withCode:200];
+}
+
 - (void)sendFourOhFour:(BOOL)asJson {
 	[self sendDictionary:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES] forKey:@"error"] asJSON:asJson withCode:404];
 }
