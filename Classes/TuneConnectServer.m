@@ -161,6 +161,25 @@
 		[itunes performSelector:[self _convertToSelector:path] withObject:connection withObject:self withObject:params];
 		
 		return;
+	} else if([[NSFileManager defaultManager] fileExistsAtPath:[[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"web"] stringByAppendingPathComponent:path]] || [path isEqualToString:@""]) {
+		if([path isEqualToString:@""])
+			path = @"index.html";
+		
+		NSString *ftype = @"text/plain";
+		
+		if([[path pathExtension] isEqualToString:@"png"]) {
+			ftype = @"image/png";
+		} else if([[path pathExtension] isEqualToString:@"html"]) {
+			ftype = @"text/html";
+		} else if([[path pathExtension] isEqualToString:@"js"]) {
+			ftype = @"text/javascript";
+		} else if([[path pathExtension] isEqualToString:@"css"]) {
+			ftype = @"text/css";
+		}
+		
+		[server replyWithData:[NSData dataWithContentsOfFile:[[[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"web"] stringByAppendingPathComponent:path]] MIMEType:ftype];
+		
+		return;
 	}
 	
 	NSLog(@"Got 404 with path: %@", path);
