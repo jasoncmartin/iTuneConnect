@@ -218,8 +218,6 @@
 		}
 	}
 	
-	NSLog(@"Sent Playlists: %@", items);
-	
 	[server sendDictionary:[NSDictionary dictionaryWithObject:items forKey:@"playlists"] asJSON:AS_JSON];
 }
 
@@ -358,6 +356,10 @@
 
 - (void)signature:(SimpleHTTPConnection *)connection withServer:(TuneConnectServer *)server andParameters:(NSDictionary *)params {
 	NSLog(@"Params: %@", params);
+	
+	NSDictionary *dictionary = [NSDictionary dictionaryWithObject:[self createPlaylistSignature:[self composeTrackArray:params]] forKey:@"signature"];
+	
+	[server sendDictionary:dictionary asJSON:AS_JSON];
 }
 
 #pragma mark -
@@ -471,6 +473,8 @@
 	
 	NSString *songID = [parts objectAtIndex:0];
 	
+	NSLog(@"Song ID: %@", songID);
+	
 	MPMediaQuery *query = [MPMediaQuery songsQuery];
 	[query addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[NSNumber numberWithUnsignedLongLong:[songID unsignedLongLongValue]] forProperty:MPMediaItemPropertyPersistentID]];
 	
@@ -537,8 +541,10 @@
 		
 		[track setValue:[item title] forKey:@"name"];
 		
+		NSLog(@"%@ %qu", item.title, item.persistentID);
+		
 		if([[params valueForKey:@"dehydrated"] boolValue]) {
-			[track setValue:[NSString stringWithFormat:@"%ll:%@:%@", item.persistentID, playlistID, sourceID] forKey:@"ref"];
+			[track setValue:[NSString stringWithFormat:@"%qu:%@:%@", item.persistentID, playlistID, sourceID] forKey:@"ref"];
 		} else {
 			[track setValue:[NSNumber numberWithUnsignedLongLong:item.persistentID] forKey:@"id"];
 			[track setValue:[NSNumber numberWithInt:[playlistID intValue]] forKey:@"playlist"];
