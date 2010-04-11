@@ -34,7 +34,7 @@
 
 @implementation MPMediaItem (Properties)
 
-- (long long) persistentID
+- (unsigned long long) persistentID
 {
 	return [[self valueForProperty:MPMediaItemPropertyPersistentID] unsignedLongLongValue];
 }
