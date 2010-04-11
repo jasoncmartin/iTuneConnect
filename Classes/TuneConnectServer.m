@@ -118,6 +118,8 @@
 		[params setObject:[parts objectAtIndex:1] forKey:[parts objectAtIndex:0]];
 	}
 	
+	NSLog(@"Got Path: %@", path);
+	
 	if([path isEqualToString:@"serverInfo.txt"]) {
 		// Okay, they want server info. Let's give it to them!
 		[self sendDictionary:[NSDictionary dictionaryWithObjectsAndKeys:
