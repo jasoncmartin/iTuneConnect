@@ -222,14 +222,11 @@
 }
 
 - (void)getTracks:(SimpleHTTPConnection *)connection withServer:(TuneConnectServer *)server andParameters:(NSDictionary *)params {
-	NSLog(@"Of Playlist: %@", [params valueForKey:@"ofPlaylist"]);
-	
 	NSArray *tracks = [self composeTrackArray:params];
 	
 	NSMutableDictionary *response = [NSMutableDictionary dictionaryWithObject:tracks forKey:@"tracks"];
 	
 	if([[params valueForKey:@"signature"] boolValue]) {
-		NSLog(@"Looking for a signature...");
 		[response setValue:[self createPlaylistSignature:tracks] forKey:@"signature"];
 	}
 	
@@ -355,8 +352,6 @@
 }
 
 - (void)signature:(SimpleHTTPConnection *)connection withServer:(TuneConnectServer *)server andParameters:(NSDictionary *)params {
-	NSLog(@"Params: %@", params);
-	
 	NSDictionary *dictionary = [NSDictionary dictionaryWithObject:[self createPlaylistSignature:[self composeTrackArray:params]] forKey:@"signature"];
 	
 	[server sendDictionary:dictionary asJSON:AS_JSON];
@@ -473,8 +468,6 @@
 	
 	NSString *songID = [parts objectAtIndex:0];
 	
-	NSLog(@"Song ID: %@", songID);
-	
 	MPMediaQuery *query = [MPMediaQuery songsQuery];
 	[query addFilterPredicate:[MPMediaPropertyPredicate predicateWithValue:[NSNumber numberWithUnsignedLongLong:[songID unsignedLongLongValue]] forProperty:MPMediaItemPropertyPersistentID]];
 	
@@ -540,8 +533,6 @@
 		track = [NSMutableDictionary dictionary];
 		
 		[track setValue:[item title] forKey:@"name"];
-		
-		NSLog(@"%@ %qu", item.title, item.persistentID);
 		
 		if([[params valueForKey:@"dehydrated"] boolValue]) {
 			[track setValue:[NSString stringWithFormat:@"%qu:%@:%@", item.persistentID, playlistID, sourceID] forKey:@"ref"];
